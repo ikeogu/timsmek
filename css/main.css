@@ -1,0 +1,875 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+*:focus {
+  outline: none;
+}
+
+html,
+body {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+  background: var(--bg-color);
+}
+
+li {
+  list-style-type: none;
+}
+a {
+  color: #333;
+  transition: 0.5s;
+  text-decoration: none;
+}
+
+.active {
+  color: #eee;
+  font-weight: bold;
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: #0759b8;
+  outline: none;
+  text-decoration: none;
+}
+
+p {
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+:root {
+  --bg-color: #fafafa;
+  --main-color: #ee4540;
+  --text-color: #333;
+  --box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Button
+==================================== */
+.butn {
+  background: var(--main-color);
+  color: #eee;
+  border: none;
+  white-space: nowrap;
+  padding: 10px 20px;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+.butn:hover {
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+}
+.butn-outline {
+  border: solid 1px #2d132c;
+  color: var(--main-color);
+  white-space: nowrap;
+  padding: 10px 20px;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+.butn-outline:hover {
+  text-decoration: none;
+}
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Core Styles styles
+   ========================================================================== */
+
+/* ==========================================================================
+   Header styles
+   ========================================================================== */
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  padding: 0.7rem 10rem;
+  font-size: 1.1rem;
+}
+#top-header #info p i {
+  margin: 0 0.6rem;
+  font-size: 1.4rem;
+}
+#top-header input[type="submit"] {
+  margin-left: -0.3rem;
+  background: var(--main-color);
+  padding: 6px 5px;
+  border: none;
+  color: #fff;
+}
+
+#top-header input[type="text"] {
+  border: none;
+  border: solid 1px var(--main-color);
+  padding: 5px 5px;
+}
+
+nav {
+  background: var(--main-color);
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 0.5px;
+}
+
+nav ul li {
+  display: inline;
+  font-size: 1rem;
+  padding: 0 1rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+nav ul li a:hover {
+  color: #ffff;
+}
+
+nav .small {
+  display: none;
+}
+
+/* ==========================================================================
+   Main styles
+   ========================================================================== */
+   #main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+
+  main .banner img{
+    width: 200rem;
+  }
+
+  .book-card .cards img {
+    width: 100%;
+    height: auto;
+  }
+
+.books-card {
+  margin-top: 1rem;
+}
+
+.cards {
+  box-shadow: var(--box-shadow);
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+.book-discription .title{
+  font-size: 1rem;
+  font-weight: bold;
+}
+.book-discription .price {
+  background: var(--text-color);
+  border-radius: 5px;
+  color: #fff;
+  padding: 2px 4px;
+}
+.book-discription i {
+  font-size: 1.5rem;
+}
+
+.books-card .view {
+  text-align: center;
+  background: var(--text-color);
+  color: #eee;
+  padding: 2px 20px;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+
+
+
+  .card-inner {
+    border: solid 1px #eee;
+    border-left: solid 1px var(--main-color);
+    border-bottom: solid 1px var(--main-color);
+    padding: 8px;
+    border-radius: 5px;
+    margin: 1rem 0;
+  }
+  .card-inner p {
+    font-weight: bold;
+  }
+
+  .card-inner li span {
+    color: #6e6c6c;
+  }
+  .card-inner i {
+    font-size: 1.5rem;
+  }
+
+
+  .view {
+    border: none;
+  }
+   .overlay {
+    position: absolute;
+    transition: 0.8s ease;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 92%;
+    width: 100%;
+    transition: 1s ease;
+    background-color: #fff;
+    display: none;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+  }
+
+  .view .text {
+    color: var(--text-color);
+    font-size: 1rem;
+    position: absolute;
+    transition: 0.5s ease;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  .overlay .text h5 {
+    font-size: 1rem;
+    text-transform: capitalize;
+    background: var(--text-color);
+    color: #eee;
+    padding: 2px 0;
+    text-align: center;
+  }
+  .overlay .text ul li {
+    text-transform: capitalize;
+  }
+  .text i {
+    margin-right: 5px;
+    font-size: 1.5rem;
+  }
+  .text ul li span {
+    font-weight: bold;
+  }
+
+  #right-side {
+    position: sticky;
+    top: 0;
+  }
+
+  #recent-blog-post {
+    margin: 4rem 0;
+  }
+  #recent-blog-post .header h2 {
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+  #recent-blog-post .header p {
+    padding: 0 5rem;
+  }
+
+  #recent-blog-post .container {
+    margin-top: 2.5rem;
+  }
+
+  #recent-blog-post .blog-card .blog-title h3{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 7px;
+    text-transform: capitalize;
+  }
+
+
+  .blog-card .blog-title h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+
+  .blog-card .blog-title date {
+    font-weight: bold;
+    color: #0759b8;
+  }
+
+  .blog-card .blog-title p {
+    margin-top: 1rem;
+    color: #333;
+  }
+  .blog-title date i {
+    font-size: 1.2rem;
+    margin-left: 10px;
+  }
+
+ 
+
+  #landingPage marquee {
+    font-size: 1.5rem;
+    font-family: cursive;
+  }
+
+  .about-author {
+    transition: 0.2s ease-in;
+    box-shadow: var(--box-shadow);
+  }
+
+
+  .comment-list img{
+    width: 100px;
+    border-radius: 50px;
+    margin-right: 1rem;
+  }
+
+  
+  .comment ul li {
+    margin-top: 3rem;
+  }
+  .comment-list .comment-body h4 {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  .comment-list .comment-body .meta {
+    color: #0759b8;
+    font-weight: bold;
+  }
+
+  .comment-list .comment-body .replay {
+    background: #adadad;
+    padding: 5px 10px;
+    color: #333;
+    border-radius: 5px;
+    transition: 0.5s ease;
+  }
+
+  .comment-list .comment-body .replay:hover {
+    background: #333333;
+    color: #fff;
+  }
+
+  .search-form .icon-search:before {
+    content: "\f002";
+  }
+
+  .sidebar-box {
+    margin-left: 2rem;
+  }
+  .heading-sidebar {
+    font-weight: bold;
+    margin-top: 4rem;
+  }
+  .categories li a{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+  .categories li a span {
+    color: #0759b8;
+  }
+  .categories li a:hover {
+    color: #0759b8;
+  }
+
+  .search-form .form-search{
+    padding: 10px;
+    width: 250px;
+  }
+
+  .blog-img img{
+    border-radius: 50px;
+    width: 250px;
+  }
+  .sidebar-box .heading-sidebar {
+    border-left: solid 2px var(--main-color);
+    padding-left: 10px;
+  }
+  .text .meta span, i {
+    font-weight: bold;
+    color: #6e6c6c;
+    font-size: 1rem;
+  }
+  .text .heading {
+    font-size: 1.2rem;
+  }
+
+  .jumbotron {
+    text-align: center;
+    background: url('../img/jumbotron.jpeg') center/cover;
+    color: #eee;
+    
+  }
+  .jumbotron h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  .about-logo {
+    padding: 80px 30px;
+    box-shadow: var(--box-shadow);
+  }
+  .about-title {
+    text-align: center;
+  }
+  .about-title h1{
+    font-size: 2rem;
+    color: #6e6c6c;
+  }
+  .about-title p {
+    font-size: 1.2rem;
+    color: #6e6c6c;
+  }
+  .about-title i {
+    font-size: 1.8rem;
+    color: #333;
+  }
+
+  .form-card {
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .form-card h4 {
+    margin-bottom: 3rem;
+  }
+/* ==========================================================================
+   Footer styles
+   ========================================================================== */
+  footer {
+    background: #eee;
+    box-shadow: var(--box-shadow);
+    color: #eee;
+    padding: 0 7rem;
+    margin-top: 5rem;
+  }
+
+
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers#
+ */
+
+.hidden {
+  display: none !important;
+}
+
+/*
+* Hide only visually, but have it available for screen readers:
+* https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+*
+* 1. For long content, line feeds are not interpreted as spaces and small width
+*    causes content to wrap 1 word per line:
+*    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+*/
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  /* 1 */
+}
+
+/*
+* Extends the .sr-only class to allow the element
+* to be focusable when navigated to via the keyboard:
+* https://www.drupal.org/node/897638
+*/
+
+.sr-only.focusable:active,
+.sr-only.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  white-space: inherit;
+  width: auto;
+}
+
+/*
+* Hide visually and from screen readers, but maintain layout
+*/
+
+.invisible {
+  visibility: hidden;
+}
+
+/*
+* Clearfix: contain floats
+*
+* For modern browsers
+* 1. The space content is one way to avoid an Opera bug when the
+*    `contenteditable` attribute is included anywhere else in the document.
+*    Otherwise it causes space to appear at the top and bottom of elements
+*    that receive the `clearfix` class.
+* 2. The use of `table` rather than `block` is only necessary if using
+*    `:before` to contain the top-margins of child elements.
+*/
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1024px) {
+}
+/* 
+@media (max-width: 768px) {
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+  }
+  #top-header {
+    display: block;
+    justify-content: space-between;
+    background: #fff;
+    padding: 0.1rem 1rem;
+    font-size: 1rem;
+  }
+  #top-header p,
+  i {
+    display: none;
+  }
+
+  #top-header input[type="submit"] {
+    margin-left: -0.3rem;
+    background: var(--main-color);
+    padding: 6px 5px;
+    border: none;
+    color: #fff;
+  }
+
+  #top-header input[type="text"] {
+    border: none;
+    border: solid 1px var(--main-color);
+    padding: 5px 2px;
+    width: 75%;
+    margin-bottom: 5px;
+  }
+
+  #top-header .branding {
+    border: none;
+    padding: 10px;
+    border-radius: none;
+    text-align: center;
+  }
+
+  nav {
+    background: var(--main-color);
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  nav ul li {
+    font-size: 1.5rem;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  nav .small-side {
+    display: none;
+    background: var(--main-color);
+    width: 40%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 9rem;
+  }
+  nav .small-side .list {
+    display: block;
+    text-align: left;
+    font-size: 1rem;
+    padding-left: 15px;
+    padding-top: 10px;
+    border-bottom: 1px #eee solid;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    white-space: wrap;
+  }
+
+  nav ul li a:hover {
+    color: #ffff;
+  }
+
+  nav .small-ul {
+    padding-top: 10px;
+  }
+  nav .small {
+    display: inline;
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  nav #toggler {
+    padding-top: 10px;
+  }
+  nav #toggler div {
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    margin: 4px;
+  }
+
+  /* main section */
+  #main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  #left-side {
+    order: 2;
+    margin: 1rem 0;
+  }
+  #left-side .card {
+    width: 300px;
+  }
+  .card-header {
+    background: var(--main-color);
+    color: var(--bg-color);
+    text-transform: capitalize;
+  }
+  #left-side .card-inner {
+    border: solid 1px #eee;
+    border-left: solid 1px var(--main-color);
+    border-bottom: solid 1px var(--main-color);
+    padding: 8px;
+    border-radius: 5px;
+    margin: 1rem 0;
+  }
+  #left-side .card-inner p {
+    font-weight: bold;
+  }
+
+  #left-side .card-inner li span {
+    color: #6e6c6c;
+  }
+
+  #main-side {
+    order: 1;
+  }
+  #main-side .banner {
+    margin: 1rem 0;
+  }
+  #main-side .banner img {
+    width: 100%;
+    height: auto;
+  }
+  .book-card img {
+    width: 100%;
+    height: auto;
+  }
+  .book-card {
+    border-radius: 5px;
+    margin: 1rem 0;
+    box-shadow: var(--box-shadow);
+  }
+  .books-card .book-discription {
+    font-size: 0.9rem;
+    padding: 5px;
+  }
+  .book-card h2{
+    font-weight: bold;
+  }
+  .book-card .book-discription li span{
+    font-weight: bold;
+  }
+  .books-card .price {
+    color: var(--text-color);
+  }
+  .book-card .book-discription h2 {
+    font-size: 1rem;
+  }
+
+  
+
+  #right-side {
+    order: 3;
+  }
+} */
+
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 1.25dppx),
+  (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster */
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+  pre {
+    white-space: pre-wrap !important;
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  /*
+     * Printing Tables:
+     * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
