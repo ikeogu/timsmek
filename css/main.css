@@ -370,6 +370,10 @@ main .banner img {
   margin-top: 1rem;
   color: #333;
 }
+.heading {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
 .blog-title date i {
   font-size: 1.2rem;
   margin-left: 10px;
@@ -1102,7 +1106,18 @@ footer {
     padding: 10px;
     margin-top: 2rem;
     padding-top: 0.5rem;
+    transition: all ease-in-out 0.7s;
   }
+
+  .closeMenu {
+    transform: translateX(-100%);
+    transition: all ease-in-out 0.7s;
+  }
+
+  .showTranslate {
+    transform: translateX();
+  }
+
   nav .small-side .list {
     display: block;
     text-align: left;
