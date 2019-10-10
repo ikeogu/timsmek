@@ -1097,15 +1097,15 @@ footer {
 
   nav .small-side {
     background: var(--main-color);
-    width: 50%;
-    height: 100%;
+    width: 30%;
+    height: 100vh;
     position: absolute;
     z-index: 1;
     left: 0;
     top: 8rem;
     padding: 10px;
     margin-top: 2rem;
-    padding-top: 0.5rem;
+    padding-top: 1rem;
     transition: all ease-in-out 0.7s;
   }
 
@@ -1123,7 +1123,6 @@ footer {
     text-align: left;
     font-size: 0.8rem;
     padding-top: 0.5rem;
-    border-bottom: 1px #eee solid;
   }
 
   nav ul li a {
@@ -1260,6 +1259,13 @@ footer {
     font-size: 0.8rem;
     margin-left: 10px;
   }
+
+  .card{
+    padding-top: 2rem;
+    width: 80%;
+    height: 200px;
+    margin-left: 2rem;
+}
 
 }
 @media only screen and (min-width: 35em) {
