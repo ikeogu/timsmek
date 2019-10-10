@@ -74,6 +74,9 @@ h6 {
   padding: 10px 20px;
   transition: all 0.2s ease-in;
   cursor: pointer;
+  display: block;
+  width: 100%;
+  border-radius: 20px;
 }
 .butn:hover {
   text-decoration: none;
@@ -343,11 +346,15 @@ main .banner img {
   margin: 4rem 0;
 }
 .header h2 {
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 2.5rem;
 }
 .header p {
   padding: 0 5rem;
+}
+
+#editors {
+  margin-top: 10rem;
 }
 
 #recent-blog-post .container {
@@ -429,14 +436,15 @@ main .banner img {
   margin-left: 2rem;
 }
 .heading-sidebar {
-  font-weight: bold;
+  /* font-weight: bold; */
   margin-top: 4rem;
+  font-size: 1.3rem;
 }
 .categories li a {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 .categories li a span {
   color: #0759b8;
@@ -452,20 +460,19 @@ main .banner img {
 
 .blog-img img {
   border-radius: 50px;
-  width: 250px;
+  width: 150px;
 }
 .sidebar-box .heading-sidebar {
   border-left: solid 2px var(--main-color);
   padding-left: 10px;
 }
-.text .meta span,
-i {
+.text .meta span, i {
   font-weight: bold;
   color: #6e6c6c;
-  font-size: 1rem;
+  font-size: 0.7rem;
 }
 .text .heading {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .jumbotron {
@@ -494,21 +501,37 @@ i {
   color: #6e6c6c;
 }
 .about-title i {
-  font-size: 1.8rem;
+  font-size: 1rem;
   color: #333;
 }
 
 .form-card {
   box-shadow: var(--box-shadow);
-  padding: 2rem;
-  text-align: center;
+  padding: 4rem;
+  border-radius: 10px;
+}
+.form-card input {
+  border-radius: 30px;
+}
+
+.form-style {
+  background: none;
+  padding: 10px;
+  margin-top: 4rem;
 }
 
 .form-card h4 {
   margin-bottom: 3rem;
 }
 
-
+.article {
+  box-shadow: var(--box-shadow);
+  padding: 20px 10px;
+  white-space: nowrap;
+  font-size: 1.2rem;
+  text-align: center;
+  color: var(--main-color);
+}
 /* =======================================================================
     Card
 =============================================================================*/
@@ -732,7 +755,7 @@ i {
      -o-transform-style: preserve-3d;
         transform-style: preserve-3d;
   position: relative;
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 /* hide back of pane during swap */
@@ -760,7 +783,7 @@ i {
      -o-transform: rotateY( 180deg );
         transform: rotateY( 180deg );
         z-index: 1;
-        
+        margin-top: 1rem;
 }
 
 .back .btn-simple{
@@ -932,9 +955,29 @@ i {
   font-size: 16px;
 }
 
-.trending {
-  font-size: 
+.small-side .card-down{
+  position: absolute;
+  top: 11rem;
+  left: 40rem;
+  background: var(--main-color);
+  padding: 10px;
 }
+
+.small-side .card-down li {
+  display: block;
+  margin-top: 0.8rem;
+}
+
+.small-side .card-down li i {
+  color: #fff;
+}
+
+#bg-color{
+  margin-top: 9rem;
+  background: #c9e1fd7a;
+  padding: 5rem 0;
+}
+
 
 /* ==========================================================================
    Footer styles
