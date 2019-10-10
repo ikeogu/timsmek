@@ -145,18 +145,32 @@
 
         <div class="col-md-6 ">
           <div class="container p-5">
-              <marquee behavior="" direction="left"><a href="#"><h4 class="article">Submit Article for publication Submit Article for publication</h4></a></marquee>
             <div class="form-card mt-5">
-              <h4 class="text-center">SIGNIN</h4>
+              <h4 class="text-center">Submit Article for publication</h4>
               <form action="">
+                <div class="form-group mb-4 mr-sm-2">
+                  <input type="text" class="form-control py-4" placeholder="enter fullname">
+                </div>
                 <div class="form-group mb-4 mr-sm-2">
                   <input type="email" class="form-control py-4" placeholder="example@mail.com">
                 </div>
                 <div class="form-group mb-4 mr-sm-2">
-                  <input type="password" class="form-control py-4" placeholder="enter password">
+                  <input type="text" class="form-control py-4" placeholder="enter article title">
                 </div>
-                <p>Not yet a member <a href="signup.html">Signup</a></p>
-                <button type="submit" class="butn mb-2 d-block">Submi</button>
+                <div class="form-group mb-4 mr-sm-2">
+                  <select id="inputState" class="form-control">
+                    <option selected>Select categories</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="form-group mb-4 mr-sm-2">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                        <label class="custom-file-label" for="validatedCustomFile">Import article</label>
+                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                      </div>
+                  </div>
+                <button type="submit" class="butn mb-2 d-block">Submit</button>
               </form>
             </div>
           </div>
