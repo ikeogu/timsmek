@@ -507,7 +507,7 @@ main .banner img {
 
 .form-card {
   box-shadow: var(--box-shadow);
-  padding: 4rem;
+  padding: 1rem;
   border-radius: 10px;
 }
 .form-card input {
@@ -945,6 +945,11 @@ main .banner img {
   background-color: transparent;
 }
 
+.btn-read {
+  box-shadow: var(--box-shadow);
+  color: #777777;
+}
+
 .btn-simple:hover,
 .btn-simple:focus{
   background-color: transparent;
@@ -978,6 +983,51 @@ main .banner img {
   padding: 5rem 0;
 }
 
+#author-page {
+  margin: 5rem 0;
+}
+
+#author-page .author-details .details li{
+  margin-top: 2rem;
+}
+
+.author-details .details li span {
+  margin-left: 1rem;
+}
+.author-details .details i {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.author-details .about-me .header {
+  font-size: 1rem;
+  margin-top: 2rem;
+  text-transform: uppercase;
+}
+
+.author-img img {
+  box-shadow: var(--box-shadow);
+  border-radius: 20px;
+}
+#author-page .user-social-link{
+  font-size: 2.5rem;
+  margin-top: 2rem;
+}
+
+#author-page .user-social-link i:hover {
+  transform: rotate(30deg)
+}
+
+#my-books .header {
+  font-size: 1.5rem;
+  margin: 4rem 0;
+}
+
+#my-books .author-book img{
+  margin-top: 1rem;
+  width: 200px;
+  height: 200px;
+}
 
 /* ==========================================================================
    Footer styles
@@ -1274,6 +1324,7 @@ footer {
     transition: 0.5s ease;
     font-size: 0.6rem;
   }
+
 
   #recent-blog-post {
     margin: 4rem 0;
