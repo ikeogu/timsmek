@@ -968,17 +968,29 @@ i {
   font-size: 16px;
 }
 
+.small-side .drop {
+  position: relative;
+}
+.small-side i {
+  color: #eee;
+}
 .small-side .card-down {
   position: absolute;
-  top: 11rem;
-  left: 40rem;
-  background: var(--main-color);
-  padding: 10px;
+  top: 2.5rem;
+  left: 0px;
+  background: var(--bg-color);
+  box-shadow: var(--box-shadow);
+  display: none;
 }
 
 .small-side .card-down li {
   display: block;
-  margin-top: 0.8rem;
+  border-bottom: solid 1px #ccc;
+  padding: 20px;
+}
+
+.small-side .card-down li a:hover {
+  color: var(--main-color);
 }
 
 .small-side .card-down li i {
@@ -1008,7 +1020,7 @@ i {
 }
 
 .author-details .about-me .header {
-  font-size: 1rem;
+  font-size: 1-em;
   margin-top: 2rem;
   text-transform: uppercase;
 }
