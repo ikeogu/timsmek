@@ -1070,6 +1070,18 @@ i {
   color: #3b5997;
 }
 
+#service .service-card {
+  margin-top: 10rem;
+}
+
+#service .service-card i {
+  margin-bottom: 1rem;
+  padding: 30px;
+  border: solid 1px var(--main-color);
+  border-radius: 50px;
+  color: #0759b8;
+}
+
 /* ==========================================================================
    Footer styles
    ========================================================================== */
