@@ -36,13 +36,14 @@ class SearchController extends Controller
     public function search(Request $request) {
         $text = $request->search;
 
-        $book = DB::table('publishes')
-        ->join('categories', 'publishes.id', '=', 'categories.publish_id')
-        ->join('authors', 'publishes.id', '=', 'authors.publish_id')
-        ->select('publishes.*', 'categories.*', 'authors.*')
-        ->where('name', 'like', "$text")->orWhere('title','like',"$text")->get();
+        $book = DB::table('publishes') ->where('title', 'like', '%'.$text.'%')->orWhere('description','like','%'.$text.'%')->get();
+        $authors = DB::table('authors') ->where('name', 'like','%'.$text.'%')->orWhere('biography','like','%'.$text.'%')->get();
+        $category = DB::table('categories')->where('name', 'like', '%'.$text.'%')->orWhere('description','like','%'.$text.'%')->get();
+       
+        $query = $book->union($authors)->union($category);
 
-        return response()->json($book);
+       
+        dd($query);
     }
 
     /**

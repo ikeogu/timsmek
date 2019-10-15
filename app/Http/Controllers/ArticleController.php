@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Article;
+use App\Publish;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -30,8 +31,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        
-         return view('pages/up_aricle');
+        $recent = Publish::latest()->take(8)->get();;
+         return view('pages/up_aricle',['recent'=>$recent]);
        
     }
 

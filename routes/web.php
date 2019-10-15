@@ -29,6 +29,7 @@ Route::resource('blog', 'BlogController');
 Route::resource('contact','ContactController');
 Route::resource('publish', 'PublishController');
 Route::resource('editor', 'EditorController');
+Route::resource('service', 'ServiceController');
 Route::any('search','SearchController@search');
 
 //download article

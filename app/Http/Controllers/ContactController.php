@@ -42,7 +42,8 @@ class ContactController extends Controller
             'name'=>'required',
             'email' =>'required',
             'phone'=> 'required',
-            'reason' => 'required'
+            'reason' => 'required',
+            
         ]);
 
         $contact = new Contact();
@@ -50,8 +51,9 @@ class ContactController extends Controller
         $contact->email =$request->email;
         $contact->phone = $request->phone;
         $contact->reason = $request->reason;
+       
         if($contact->save()){
-            return redirect(route(''))->with('sucess','Messege Sent. You\'ll hear from us soon.');
+            return redirect(route('contact.create'))->with('success','Messege Sent. You\'ll hear from us soon!');
         }
     }
 

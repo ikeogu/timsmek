@@ -5,8 +5,8 @@
               Recent Publications
             </div>
             <div class="card-body">
-              @if ($recent->count() > 0)
-                 @foreach ($recent as $item)
+              @if (count($recent ) > 2)
+                 @foreach ($recent  as $item)
                   <div class="card-inner">
                     <p><i class="icon ion-md-journal mr-2"></i>{{$item->title}}</p>
                     <ul>

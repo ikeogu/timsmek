@@ -38,7 +38,7 @@
            {{-- For the Books to display of the homepage --}}
            <div class="row">
 
-              @if($book->count() > 0)
+              @if($book->count() > 2)
                   @foreach ($book as $item)
                       <div class="col-md-3 col-lg-3">
                           <div class="card-container manual-flip">

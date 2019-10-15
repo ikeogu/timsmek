@@ -32,24 +32,41 @@
         </div>
       </section>
       <section id="form" class="mt-5 mx-5 text-center">
-        <form action="">
+        <div >
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div><br />
+            @endif
+            @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <p>{{ \Session::get('success') }}</p>
+            </div><br />
+          @endif
+        </div>
+      <form action="{{route('contact.store')}}" method="POST"> 
+          @csrf
           <div class="form-row">
             <div class="col-md-6">
-              <input type="text" class="form-control mt-4" placeholder="Full name">
+              <input type="text" class="form-control mt-4" placeholder="Full name" name="name" required>
             </div>
             <div class="col-md-6">
-              <input type="email" class="form-control mt-4" placeholder="Email">
+              <input type="text" class="form-control mt-4" placeholder="Phone" name="phone" required>
             </div>
           </div>
           <div class="form-row">
             <div class="col">
-              <input type="text" class="form-control mt-4" placeholder="Subject">
+              <input type="email" class="form-control mt-4" placeholder="Email" name="email" required>
             </div>
           </div>
           <div class="form-row">
-            <textarea class="form-control mt-4" placeholder="Message" rows="5"></textarea>
+            <textarea class="form-control mt-4" placeholder="Message" rows="5" name="reason" required></textarea>
           </div>
-          <button type="submit" class="butn-outline my-4">Submit article</button>
+          <button type="submit" class="butn-outline my-4">Send</button>
         </form>
       </section>
     </div>

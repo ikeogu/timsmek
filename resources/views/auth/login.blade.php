@@ -4,7 +4,7 @@
 
 <div class="container-fluid mt-5">
     <div class="row">
-      @include('partials/sidebar')
+      @include('partials/sidebar2')
 
       <div class="col-md-6 ">
         <div class="container p-5">

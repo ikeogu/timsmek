@@ -32,61 +32,11 @@
 
 <body>
   <div >
-        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav> --}}
         
 		<header>
 			<div id="top-header">
 				<div class="branding">
-					<img src="img/logo.png" alt="" class="img-fluid" width="400">
+					<img src="{{asset('img/logo.png')}}" alt="logo" class="img-fluid" width="400">
 				</div>
 				<div id="info">
 					<p><i class="icon ion-logo-whatsapp"></i> <i class="icon ion-md-call"></i></i> <span
@@ -119,17 +69,17 @@
 					<div></div>
 					<div></div>
 				</div>
-				<ul class="small-side">
+				<ul class="small-side" id="myNav">
 					<li class="list"><a href="/" class="active">Home</a></li>
 					<li class="list"><a href="/about">About us <i class="fa fa-chevron-down"></i></a>
 					</li>
 					<li class="list"><a href="{{route('authors.index')}}">Our Authors</a></li>
 					
 					<li class="list"><a href="{{route('publish.index')}}">Store</a></li>
-					<li class="list"><a href="#">Services</a></li>
+					<li class="list"><a href="{{route('service.index')}}">Services</a></li>
 					<li class="list"><a href="{{route('blog.index')}}">Blog</a></li>
 					<li class="list"><a href="{{route('article.create')}}">Submit article</a></li>
-					<!-- <li class="small"><a href="#"><i class="icon ion-md-user"></i></a></li> -->
+				<li  class="list"><a href="{{route('contact.create')}}"></i> Contact us</a></li> 
 				</ul>
 				<ul class="small-ul">
 					<li class="small"><a href="/register">Sign up</a></li>
@@ -141,54 +91,57 @@
 				@yield('content')
 		</main>
 		
-		<<footer>
+		<footer>
 			<section id="quick-links">
 			  <div class="container">
-				<div class="row ">
-				  <div class="col-md-4 m-0">
-					<div class="time-logo">
-					  <img src="img/logo.png" alt="" class="img-fluid" width="300">
+					<div class="row ">
+						<div class="col-md-4 m-0">
+							<div class="time-logo">
+								<img src="{{asset('img/logo.png')}}" alt="" class="img-fluid" width="300">
+							</div>
+							<p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto id magnam fugit officia. Nam qui odit vero
+								quia pariatur enim dolore voluptatem quibusdam ducimus dignissimos ex ea, eveniet consectetur repellendus.
+							</p>
+						</div>
+						<div class="col-md-4 m-0">
+							<div class="links ml-5">
+								<h4>Useful Links</h4>
+								<ul class="nav-link">
+								<li><a href="/">Home</a></li>
+								<li><a href="/about">About</a></li>
+								<li ><a href="{{route('publish.index')}}">Store</a></li>
+								<li ><a href="{{route('service.index')}}">Services</a></li>
+								<li ><a href="{{route('blog.index')}}">Blog</a></li>
+								<li ><a href="{{route('article.create')}}">Submit article</a></li>
+								<li ><a href="{{route('contact.create')}}"></i> Contact us</a></li> 
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-4 m-0">
+							<div class="contact-footer pl-5">
+								<h4>Contact </h4> 
+								<p>Address :</p>
+								<p>Email :</p>mails@timeks.com
+								<p>Phone:</p> 0703-455-9895
+								<p>Tel:</p>0703-455-9895
+				
+								<div class="row justify-content-right mt-4 user-social-link">
+								<div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
+								<div class="col-auto"><a href="#!"><i class="fa fa-linkedin text-linkedin"></i></a></div>
+								<div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto id magnam fugit officia. Nam qui odit vero
-					  quia pariatur enim dolore voluptatem quibusdam ducimus dignissimos ex ea, eveniet consectetur repellendus.
-					</p>
-				  </div>
-				  <div class="col-md-4 m-0">
-					<div class="links ml-5">
-					  <h4>Useful Links</h4>
-					  <ul class="nav-link">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="index.html">About</a></li>
-						<li><a href="index.html">Shop</a></li>
-						<li><a href="index.html">authors</a></li>
-						<li><a href="index.html">Editors</a></li>
-						<li><a href="index.html">Article publication</a></li>
-					  </ul>
-					</div>
-				  </div>
-				  <div class="col-md-4 m-0">
-					<div class="contact-footer pl-5">
-					  <h4>Contact</h4>
-					  <p>Address</p>
-					  <p>Email</p>
-					  <p>Phone:</p>
-					  <p>Tel:</p>
-		
-					  <div class="row justify-content-right mt-4 user-social-link">
-						<div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
-						<div class="col-auto"><a href="#!"><i class="fa fa-linkedin text-linkedin"></i></a></div>
-						<div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
-					  </div>
-					</div>
-				  </div>
-				</div>
+					<p  class="justify-content-center">&copy; Copyright, Timsek, All Right Reservered</p>
+					<p>Design by  <a href="#">Kaiyleb_dev</a> &&  <a href="https://emmanuel-chidera.netlify.com">Emmanuel</a></p> 
 			  </div>
 			</section>
-			<section id="bottom-footer">
-			  <p>&copy; Copyright, Timsek, All Right Reservered</p>
-			  <p>Design by  <a href="#">Kaiyleb_dev</a> &&  <a href="https://emmanuel-chidera.netlify.com">Emmanuel</a></p>
+			<section>
+			 
+			  
 			</section>
-		  </footer>
+		</footer>
 		
 	
 	
@@ -228,7 +181,23 @@
 					}
 				}
 			}
+
+			var btnContainer = document.getElementById("myNav");
+
+			// Get all buttons with class="btn" inside the container
+			var btns = btnContainer.getElementsByClassName("list");
+			
+			// Loop through the buttons and add the active class to the current/clicked button
+			for (var i = 0; i < btns.length; i+=1) {
+				btns[i].addEventListener("click", function() {
+					var current = document.getElementsByClassName("active");
+					
+					current[0].className = current[0].className.replace(" active", "");
+					this.className += " active";
+				});
+			}
 		</script>
+		<script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: 'a6f969f6-486d-4233-9337-660fc6f6310a', f: true }); done = true; } }; })();</script>
 	
 </div>
 </body>

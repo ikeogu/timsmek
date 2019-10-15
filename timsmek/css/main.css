@@ -76,7 +76,7 @@ h6 {
   cursor: pointer;
   display: block;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 5px;
 }
 .butn:hover {
   text-decoration: none;
@@ -84,15 +84,18 @@ h6 {
   box-shadow: var(--box-shadow);
 }
 .butn-outline {
-  border: solid 1px #2d132c;
-  color: var(--main-color);
+  border: solid 1px var(--main-color);
+  color: #333;
   white-space: nowrap;
-  padding: 10px 20px;
+  padding: 10px 60px;
   transition: all 0.2s ease-in;
   cursor: pointer;
+  background: none;
 }
 .butn-outline:hover {
   text-decoration: none;
+  background: var(--main-color);
+  color: #eee;
 }
 
 ::-moz-selection {
@@ -1027,6 +1030,37 @@ main .banner img {
   margin-top: 1rem;
   width: 200px;
   height: 200px;
+}
+
+.address-1 {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.address-1 h4, .address-2 h4 {
+  color: #666666;
+
+}
+
+.address-2 {
+  border-left: solid 1px #333;
+  border-right: solid 1px #333;
+  text-align: center;
+  margin-top: 4rem;
+} 
+.address-1 i, .address-2 i {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  transition: 0.5s ease-in-out;
+  color: #4099ff;
+  padding: 15px;
+  border: solid 1px var(--main-color);
+  border-radius: 45px;
+}
+
+.address-1 i:hover, .address-2 i:hover  {
+  transform: rotate(30deg);
+  color: #3B5997;
 }
 
 /* ==========================================================================
