@@ -9,21 +9,19 @@
               <h2>{{$blog->caption}}</h2>
             </div>
             <div class="blog-body">
-              <p class="blog-content mb-3">{{str_limit($blog->body, $limit = 40, $end = '..')}}</p>
-              <img src="/storage/blog_post/{{$blog->id}}" alt="{{$blog->caption}}" class="img-fluid">
-              <p class="blog-content mt-5">{{$blog->body}}</p>
+              <p class="blog-content mb-3">{{str_limit($blog->body, $limit = 50, $end = '..')}}</p>
+              <img src="/storage/blog_post/{{$blog->image}}" alt="{{$blog->caption}}" class="img-fluid">
+              <p class="blog-content mt-5">{!!nl2br($blog->body)!!}</p>
 
               
             </div>
             <div class="about-author my-5 d-flex bg-light p-5">
               <div class="author-img mr-5">
-                <img src="./img/person_1.jpg" alt="" class="img-fluid" width="200">
+                <img src="/storage/blog_post/{{$blog->image}}" alt="" class="img-fluid" width="200">
               </div>
               <div class="decs">
                 <h4>{{$blog->writter}}</h4>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum laudantium doloremque tenetur
-                  blanditiis
-                  minus architecto, earum dolorum recusandae sint ipsam?</p>
+                <p>Study to show yourself approved. New Discoveries and New interventions are they result of Hardwork.</p>
               </div>
             </div>
             
@@ -43,109 +41,35 @@
             </form>
           </div>
           <div class="sidebar-box">
-            <h4 class="heading-sidebar">Categories</h4>
-            <ul class="categories">
-              <li>
-                <a href="#">
-                  Researchers
-                  .....<span>(12)</span>
+              <h4 class="heading-sidebar">Recent Blog</h4>
+              
+              @foreach ($recent as $item)
+              <div class="d-flex mt-2">
+                <a href="#" class="blog-img mr-4">
+                  <img src="/storage/blog_post/{{$item->image}}" alt="" class="img-fluid">
                 </a>
-              </li>
-              <hr>
-              <li>
-                <a href="#">
-                  Poem
-                  ......<span>(19)</span>
-                </a>
-              </li>
-              <hr>
-              <li>
-                <a href="#">
-                  Agriculture
-                  ......<span>(32)</span>
-                </a>
-              </li>
-              <hr>
-              <li>
-                <a href="#">
-                  Science
-                  ......<span>(92)</span>
-                </a>
-              </li>
-              <hr>
-              <li>
-                <a href="#">
-                  Medical
-                  ......<span>(10)</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="sidebar-box">
-            <h4 class="heading-sidebar">Recent Blog</h4>
-            <div class="d-flex mt-2">
-              <a href="#" class="blog-img mr-4">
-                <img src="./img/blogImg.jpg" alt="" class="img-fluid">
-              </a>
-              <div class="text">
-                <h4 class="heading">
-                  <a href="#">Why Lead Generation is Key for Business Growth</a>
-                </h4>
-                <div class="meta">
-                  <div>
-                    <i class="icon ion-md-calendar"></i>
-                    <span>Oct, 14, 2019</span>
-                  </div>
-                  <div>
-                    <i class="icon ion-md-person"></i>
-                    <span>Admin</span>
+                <div class="text">
+                  <h4 class="heading">
+                  <a href="#">{{$item->caption}}</a>
+                  </h4>
+                  <div class="meta">
+                    <div>
+                      <i class="icon ion-md-calendar"></i>
+                      <span>{{$item->created_at->diffForHumans()}}</span>
+                    </div>
+                    <div>
+                      <i class="icon ion-md-person"></i>
+                      <span>{{$item->writter}}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <hr>
-            <div class="d-flex mt-2">
-              <a href="#" class="blog-img mr-4">
-                <img src="./img/blogImg.jpg" alt="" class="img-fluid">
-              </a>
-              <div class="text">
-                <h4 class="heading">
-                  <a href="#">Why Lead Generation is Key for Business Growth</a>
-                </h4>
-                <div class="meta">
-                  <div>
-                    <i class="icon ion-md-calendar"></i>
-                    <span>Oct, 14, 2019</span>
-                  </div>
-                  <div>
-                    <i class="icon ion-md-person"></i>
-                    <span>Admin</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr>
-            <div class="d-flex mt-2">
-              <a href="#" class="blog-img mr-4">
-                <img src="./img/blogImg.jpg" alt="" class="img-fluid">
-              </a>
-              <div class="text">
-                <h4 class="heading">
-                  <a href="#">Why Lead Generation is Key for Business Growth</a>
-                </h4>
-                <div class="meta">
-                  <div>
-                    <i class="icon ion-md-calendar"></i>
-                    <span>Oct, 14, 2019</span>
-                  </div>
-                  <div>
-                    <i class="icon ion-md-person"></i>
-                    <span>Admin</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+              <hr>
+  
+              
+            </div> 
+          @endforeach
+          
         </div>
       </div>
     </div>

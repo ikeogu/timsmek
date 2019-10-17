@@ -24,9 +24,9 @@
                 <p><a href="/authors/{{$item->id}}" class="btn btn-read">read more...</a></p>
                 <hr>
 								<div class="row justify-content-center user-social-link">
-									<div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
-									<div class="col-auto"><a href="#!"><i class="fa fa-linkedin text-linkedin"></i></a></div>
-									<div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+									<div class="col-auto"><a href="{{$item->instagram}}"><i class="fa fa-facebook text-facebook"></i></a></div>
+									<div class="col-auto"><a href="{{$item->linkin}}"><i class="fa fa-linkedin text-linkedin"></i></a></div>
+									<div class="col-auto"><a href="{{$item->twitter}}"><i class="fa fa-twitter text-twitter"></i></a></div>
 								</div>
 							</div>
 						</div>

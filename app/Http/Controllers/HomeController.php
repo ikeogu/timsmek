@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Blog;
 use App\Publish;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,21 +24,28 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function admin(){
+        
+    }
     public function index()
     {
-        return view('home');
+        if(Auth::user()->isAdmin== 1||Auth::user()->isAdmin== 2){
+            return redirect(route('admindashboard'));
+        }   
+        return 'LoggedIn'; 
     }
     public function first(){
         $blog = Blog::paginate(3);
         $book = Publish::paginate(10);
         $recent = Publish::latest()->take(8)->get();
+        // dd($recent);
         return view('pages/index',['blog'=>$blog, 'book'=>$book,'recent'=>$recent]);
 
     }
 
-    public function recent(){
-        $recent = Publish::latest()->take(8)->get();;
-        return view('partials/sidebar',['recent'=>$recent]);
+    // public function recent(){
+    //     $recent = Publish::latest()->take(8)->get();;
+    //     return view('partials/sidebar',['recent'=>$recent]);
    
-    }
+    // }
 }

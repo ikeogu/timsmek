@@ -2,7 +2,7 @@
 @section('content')
 <section>
   <div class="container">
-    <marquee behavior="" direction="right">Post article for publication Post article for publication</marquee>
+    <marquee behavior="" direction="left">Post article for publication Post article for publication</marquee>
     <div class="row">
       <div class="col-md-12">
         <div class="about">
@@ -66,69 +66,30 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis mollitia cum tempore sequi, vel</p>
     </div>
     <div class="row">
-      <div class="col-md-4">
-        <div class="card user-card mt-5">
-          <div class="card-block">
-            <div class="user-image">
-              <img src="img/team/Timothy-Onyebuchi-photo-266x300.jpg" class="img-radius" alt="User-Profile-Image">
-            </div>
-            <h6 class="f-w-600 m-t-25 m-b-10">prof Alessa Robert</h6>
-            <p class="text-muted">Author | Male |</p>
-            <hr>
-            <p class="m-t-15 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </p>
-            <hr>
-            <div class="row justify-content-center user-social-link">
-              <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
-              <div class="col-auto"><a href="#!"><i class="fa fa-linkedin text-linkedin"></i></a></div>
-              <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card user-card mt-5">
-          <div class="card-block">
-            <div class="user-image">
-              <img src="img/team/IMG-20181129-WA0012.jpg" class="img-radius" alt="User-Profile-Image">
-            </div>
-            <h6 class="f-w-600 m-t-25 m-b-10">prof Alessa Robert</h6>
-            <p class="text-muted">Author | Male |</p>
-            <hr>
-            <p class="m-t-15 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </p>
-            <hr>
-            <div class="row justify-content-center user-social-link">
-              <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
-              <div class="col-auto"><a href="#!"><i class="fa fa-linkedin text-linkedin"></i></a></div>
-              <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+      @foreach ($editor as $item)
+        <div class="col-md-4">
+          <div class="card user-card mt-5">
+            <div class="card-block">
+              <div class="user-image">
+              <img src="/storage/editors/{{$item->photo}}" class="img-radius" alt="User-Profile-Image">
+              </div>
+              <h6 class="f-w-600 m-t-25 m-b-10">{{$item->name}}</h6>
+              <p class="text-muted"> {{$item->email}}</p>
+              <hr>
+              <p class="m-t-15 text-muted">{{$item->bio}}
+              </p>
+              <hr>
+              <div class="row justify-content-center user-social-link">
+                <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
+                <div class="col-auto"><a href="#!"><i class="fa fa-linkedin text-linkedin"></i></a></div>
+                <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card user-card mt-5">
-          <div class="card-block">
-            <div class="user-image">
-              <img src="img/team/IMG-20181129-WA0003.jpg" class="img-radius" alt="User-Profile-Image">
-            </div>
-            <h6 class="f-w-600 m-t-25 m-b-10">prof Alessa Robert</h6>
-            <p class="text-muted">Authors | Male |</p>
-            <hr>
-            <p class="m-t-15 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </p>
-            <hr>
-            <div class="row justify-content-center user-social-link">
-              <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
-              <div class="col-auto"><a href="#!"><i class="fa fa-linkedin text-linkedin"></i></a></div>
-              <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
-            </div>
-          </div>
-        </div>
-      </div>
+        </div> 
+      @endforeach
+      {{$editor->links()}}
+      
     </div>
   </div>
 </section>

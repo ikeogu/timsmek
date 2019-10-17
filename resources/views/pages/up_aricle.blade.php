@@ -23,6 +23,7 @@
                 <p>{{ \Session::get('success') }}</p>
             </div><br />
           @endif
+          
             <form action="{{route('article.store')}}" method="POST">
                 @csrf
               <div class="form-group mb-4 mr-sm-2">

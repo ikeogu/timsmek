@@ -4,32 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Publish;
 use App\Category;
+use App\Author;
 use Illuminate\Http\Request;
 
 class PublishController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['index','show']);
+    public function __constructor(){
+        $this->middleware('auth')->except(['index','show','downloadPDF','readBook']);
     }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->except(['index','show']);
+    // }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index2()
-    {
-        //
-        
-        $book = Publish::with('authors')->get();
-        return view('index',['book'=>$book]);
-    }
+    
 
     public function index()
     {
         //
-        $book = Publish::all();
+        
         $cat = Category::with('publish')->get();
+        $book = Publish::with('author')->get();
+        //dd($book);
+        // $book_cat = Publish::with('category')->get();
         return view('store/index',['book'=>$book,'cat'=>$cat]);
     }
 
@@ -41,7 +42,9 @@ class PublishController extends Controller
     public function create()
     {
         //
-        return view('book/create');
+        $cat = Category::all();
+        $author = Author::all();
+        return view('admin/pub_book',['author'=>$author,'cat'=>$cat]);
     }
 
     /**
@@ -87,22 +90,37 @@ class PublishController extends Controller
         }else{
             $fileNameToStore = 'noimage.jpg';
         }
+        
         $book = new Publish();
         $book->title = $request->title;
         $book->price = $request->price;
         $book->available = $request->available;
         $book->year_pub = $request->year_pub;
-        $book->author_id = $request->author_id;
+        
+        
         $book->category_id = $request->category_id;
         $book->description = $request->description;
-        $book->status = $request->status;
+        if($book->price == 0){
+            $book->status = 0;
+        }elseif ($book->price !== 0) {
+            # code...
+            $book->status = 1;
+        }
+         
+
+        $book->author_id = $request->author_id;
+        
         $book->content = $fileNameToSave;
         $book->cover_page = $fileNameToStore;
         if($book->save()){
-         return redirect(route('book.create'))->with('success','Book Published');
+         return redirect(route('publish.create'))->with('success','Book Published');
         }
     }
 
+    // public function setAuthor(Publish $author) 
+    // {
+    //      $this->author_id = $player->id;
+    // }
     /**
      * Display the specified resource.
      *
@@ -113,7 +131,7 @@ class PublishController extends Controller
     {
         //
         $sbook = Publish::find($publish);
-        return view('book/index',['sbook'=>$sbook]);
+        return view('store/show',['book'=>$sbook]);
     }
 
     /**
@@ -124,8 +142,10 @@ class PublishController extends Controller
      */
     public function edit($publish)
     {
+        $cat = Category::all();
+        $author = Author::all();
         $book = Publish::find($publish);
-        return view('book/edit',['book'=>$sbook]);
+        return view('admin/editbook',['book'=>$book,'cat'=>$cat,'author'=>$author]);
     }
 
     /**
@@ -138,8 +158,8 @@ class PublishController extends Controller
     public function update(Request $request, $publish)
     {
         //
-        Publish::whereId($publish)->update(except(['_method','_token']));
-        return redirect(route('book.index'))->with('success','Book Updated');
+        Publish::whereId($publish)->update($request->except(['_method','_token']));
+        return redirect(route('boooks'))->with('success','Book Updated');
     }
 
     /**
@@ -153,13 +173,13 @@ class PublishController extends Controller
         //
         $book = Publish::find($publish);
         $book->delete();
-        return redirect(route('pubish.index'))->with('success','Book Updated');
+        return redirect(route('books'))->with('success','Book Updated');
     }
 
     public function downloadPDF($id){
         $article= Publish::find($id);
         //dd($article);
-        $file_path = public_path('storage/publish/'.$article->filename);
+        $file_path = public_path('storage/publish/'.$article->content);
         return response()->download($file_path);
     }
 
@@ -168,7 +188,7 @@ class PublishController extends Controller
         return view('store/index',['book'=> $book]);
     }
 
-    // public function recent(){
+    // public function recentPu(){
         
     //     return
     // }

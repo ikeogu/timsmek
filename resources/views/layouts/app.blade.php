@@ -80,6 +80,9 @@
 					<li class="list"><a href="{{route('blog.index')}}">Blog</a></li>
 					<li class="list"><a href="{{route('article.create')}}">Submit article</a></li>
 				<li  class="list"><a href="{{route('contact.create')}}"></i> Contact us</a></li> 
+				@if(Auth::user()->isAdmin === 1)
+					<li class="list">	<a href="{{route('admindashboard')}}"> Admin DashBoard</a></li>
+				@endif
 				</ul>
 				<ul class="small-ul">
 					<li class="small"><a href="/register">Sign up</a></li>

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __constructor(){
+        $this->middleware('auth')->execpt(['index']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +28,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category/create');
+        $cat = Category::paginate(10);
+        return view('admin/index',['cat'=>$cat]);
     }
 
     /**
@@ -36,7 +40,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $tjhis->validate(request(),[
+        $this->validate(request(),[
             'name'=>'required',
             'description'=>'required'
         ]);
@@ -80,11 +84,11 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $category)
+    public function update(Request $request,$category)
     {
         //
         Category::whereId($category)->update($request->except(['_method','_token']));
-        return redirect(route('category.index'))->with('success',['Category Updated']); 
+        return redirect(route('category.create'))->with("success","Category Updated"); 
     }
 
     /**
@@ -98,6 +102,6 @@ class CategoryController extends Controller
         //
         $category = Category::find($category);
         $category->delete();
-        return redirect(route('category.index'))->with('Danger',['Category Deleted']); 
+        return redirect(route('category.create'))->with("Danger","Category Deleted"); 
     }
 }

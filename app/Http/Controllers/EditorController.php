@@ -7,31 +7,32 @@ use Illuminate\Http\Request;
 
 class EditorController extends Controller
 {
+    public function __constructor(){
+        $this->middleware('auth')->except(['index2']);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index2()
-    {
-       $editor = Editor::paginate(12);
-       return view('pages/about',['editor'=>$editor]);
-    }
     public function index()
     {
-       $editor = Editor::all();
-       return view('editors/index',['editor'=>$editor]);
+       $editor = Editor::paginate(9);
+       return view('editor/index',['editor'=>$editor]);
     }
+    public function index2()
+    {
+       $editor = Editor::paginate(6);
+       return view('pages/about',['editor'=>$editor]);
+    }
+    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('editor/create');
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -48,7 +49,7 @@ class EditorController extends Controller
        ]);
        if($request->hasFile('photo')){
         //get file name with extension
-        $fileNameWithExt = $request->file('cover_page_front')->getClientOriginalName();
+        $fileNameWithExt = $request->file('photo')->getClientOriginalName();
         //get just file name
         $filenames = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
         //get just extension
@@ -63,10 +64,11 @@ class EditorController extends Controller
 
        $editor = new Editor();
        $editor->name = $request->name;
+       $editor->email = $request->email;
        $editor->bio = $request->bio;
        $editor->photo  = $fileNameToStore;
        if($editor->save()){
-        return redirect(route('editor.create'))->with('success','Editor added');
+        return redirect(route('editors.index'))->with('success','Editor added');
 
        }
     }
@@ -91,8 +93,8 @@ class EditorController extends Controller
     public function edit($editor)
     {
         //
-        $edit = Editor::find($editor);
-        return view('editors/edit',['editor'=>$editor]);
+        $editor = Editor::find($editor);
+        return view('editor/edit',['editor'=>$editor]);
     }
 
     /**
@@ -105,8 +107,8 @@ class EditorController extends Controller
     public function update(Request $request, $editor)
     {
         //
-        Editor::whereId($editor)->update($request->except(['method','token']));
-        return redirect(route('editor.index'))->with('success','Updated');
+        Editor::whereId($editor)->update($request->except(['_method','_token']));
+        return redirect(route('editors.index'))->with('success','Updated');
 
     }
 
@@ -121,7 +123,7 @@ class EditorController extends Controller
         //
         $editor = Editor::find($editor);
         $editor->delete();
-        return redirect(route('editor.index'))->with('success','Updated');
+        return redirect(route('editors.index'))->with('success','Updated');
 
     }
 }

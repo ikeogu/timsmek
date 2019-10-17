@@ -11,6 +11,9 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __constructor(){
+        $this->middleware('auth')->except(['index']);
+    }
     public function index()
     {
         //
@@ -25,7 +28,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-       return view('pages/addservice');
+        $service = Service::paginate(4);
+       return view('admin/addservice',['service'=>$service]);
     }
 
     /**
@@ -61,7 +65,7 @@ class ServiceController extends Controller
         $service->image = $fileNameToStore;
 
         if($service->save()){
-            return redirect(route())->with('success','Service Added');
+            return redirect(route('service.create'))->with('success','Service Added');
         }
     }
 
@@ -98,7 +102,7 @@ class ServiceController extends Controller
     public function update(Request $request, $id)
     {
        Service::whereId($id)->update($request->except(['_method','token']));
-       return redirect(route())->with('success','Service Updated');
+       return redirect(route('service.create'))->with('success','Service Updated');
     }
 
     /**
@@ -111,6 +115,6 @@ class ServiceController extends Controller
     {
         $service = Service::find($id);
         $service->delete();
-        return redirect(route())->with('success','Service Removed.');
+        return redirect(route('service.create'))->with('success','Service Removed.');
     }
 }

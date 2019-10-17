@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Author;
+use App\Publish;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 
 {
+    
     public function __constructor(){
         $this->middleware('auth')->except(['index','show']);
     }
@@ -23,12 +25,7 @@ class AuthorController extends Controller
         
     }
 
-    public function index2()
-    {
-        $author = Author::all();
-        return view('admin/allauthors',['author'=>$author]);
-    }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -47,11 +44,13 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
+      
         $this->validate(request(),[
             'name'=> 'required|max:50',
             'sex'=> 'required',
             'book_authored'=> 'required',
-            'photo'=> 'required|mime:jpg,jpeg,png,svg',
+            'photo'=> 'required',
+            
 
         ]);
 
@@ -74,6 +73,7 @@ class AuthorController extends Controller
         $author->name = $request->name;
         $author->dob = $request->dob;
         $author->pob = $request->pob;
+        $author->sex = $request->sex;
         $author->email = $request->email;
         $author->photo = $fileNameToStore;
         $author->book_authored = $request->book_authored;
@@ -83,7 +83,7 @@ class AuthorController extends Controller
         $author->linkin = $request->linkin;
         $author->instagram = $request->instagram;
         if($author->save()){
-            return redirect(route('author.create'))->with('success', 'Author Added');
+            return redirect(route('authors.create'))->with('success', 'Author Added');
         }
     }
 
@@ -96,8 +96,10 @@ class AuthorController extends Controller
     public function show($author)
     {
         //
-        $list = Author::with('books')->find($author);
-        return view('authors/show',['author'=>$list]);
+        $authors= Author::find($author);
+        $book= Publish::where('author_id',$author)->get();
+        
+        return view('authors/show',['author'=>$authors,'book'=>$book]);
     }
 
     /**
@@ -106,7 +108,7 @@ class AuthorController extends Controller
      * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function edit(Author $author)
+    public function edit($author)
     {
         //
         $list = Author::find($author);
@@ -123,7 +125,7 @@ class AuthorController extends Controller
     public function update(Request $request, $author)
     {
        Author::whereId($author)->update($request->except(['_method','_token']));
-       return redirect(route('author.index2'))->with('success', 'Author Update');
+       return redirect(route('allauth'))->with('success', 'Author Update');
     }
 
     /**
@@ -136,6 +138,6 @@ class AuthorController extends Controller
     {
        $auth = Author::find($author);
        $auth->delete();
-       return redirect(route('author.index2'))->with('success', 'Author Deleted');
+       return redirect(route('allauth'))->with('success', 'Author Deleted');
     }
 }

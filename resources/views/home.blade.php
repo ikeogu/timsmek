@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
+                    
                     You are logged in!
+                    <a href="{{route('admindashboard')}}">Click to see Admin DashBoard</a>
                 </div>
             </div>
         </div>

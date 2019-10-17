@@ -16,7 +16,7 @@
                                     <option selected >Select categories</option>
                                     @if ($cat->count() > 0)
                                         @foreach ($cat as $item)
-                                            <option> <a href ="/publish/{{$item->publish()->id}}">{{$item->name}}</a></option>
+                                            <option> <a href ="/publish/">{{$item->name}}</a></option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -25,17 +25,22 @@
                         <div class="sidebar-box">
                             <h4 class="heading-sidebar">Categories</h4>
                             @if ($cat->count() > 0)
-                                @for ($cat = 1; $i < 6; $i+=1)
-                                    @foreach ($cat ?? '' as $item)
+                               
+                                    @foreach ($cat  as $item)
                                         <ul class="categories">
                                             <li>
-                                                <a href ="/publish/{{$item->publish()->id}}">{{$item->name}}</a>
+                                                
+                                                    <a href ="/publish/">{{$item->name}}</a>
+                                                
                                             </li>
                                             <hr>
                                             
-                                        </ul> 
+                                            
+                                        </ul>
+                                        @if($item->count() > 6) 
+                                           @break
+                                        @endif    
                                     @endforeach
-                                @endfor
                             @endif
                         
                         </div>
@@ -58,11 +63,11 @@
                                                         <hr>
                                                         <p class="price">{{$item->year_pub}}</p>
                                                         @if($item->status === 1)
-                                                            <p class="price">#{{$item->price ?? ''}}</p>
+                                                            <p class="price">₦{{$item->price}}</p>
                                                             <a href="#" class="buy btn">Buy <i class="fa fa-shopping-cart"></i></a>
                                                         @else
                                                             <p class="price">Free</p>
-                                                            <a href="#" class="buy btn">Download <i class="fa fa-download"></i></a>
+                                                    <a href="{{route('down',[$item->id])}}" class="buy btn">Download <i class="fa fa-download"></i></a>
                                                         @endif    
                                                         <div class="footer">
                                                         <button class="btn btn-simple" onclick="rotateCard(this)">
@@ -73,20 +78,20 @@
                                                 </div> <!-- end front panel -->
                                             
                                                 <div class="back mb-5">
-                                                    @foreach ($book->authors as $a)
+                                                    
                                                     <div class="user">
-                                                        <img class="img-circle" src="/storage/authors/{{$a->photo}}" />
+                                                    <img class="img-circle" src="/storage/authors/{{$item->author->photo}}" height="50" width="60">
                                                     </div>
                                                     <div class="content text-center">
                                                         <div class="main">
-                                                        <h6 class="m-b-10"> {{$a->name}}</h6>
-                                                        <a href="/authors/{{$a->id}}">View more</a>
-                                                        @endforeach
+                                                        <h6 class="m-b-10">{{$item->author->name}} </h6>
+                                                        <a href="/authors/{{$item->author->id}}">View more</a>
+                                                        
                                                         <hr> 
-                                                        <h6 class="m-b-10">Cat: {{$a->category()->name}}</h6>
-                                                        <h6 class="m-b-10">Ava: {{$a->available}}</h6>
-                                                        <p class="text-muted m-t-15">Description</p>
-                                                        <p class="text-muted m-t-15">{{$item->description}}</p>
+                                                        <h6 class="m-b-10">Cat: {{$item->category->name}}</h6>
+                                                        <h6 class="m-b-10">Ava: {{$item->available}}</h6>
+                                                        <a href="/publish/{{$item->id}}">About book</a>
+                                                        <p class="text-muted m-t-15">{{str_limit($item->description, $limit = 30, $end = '...')}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="footer">

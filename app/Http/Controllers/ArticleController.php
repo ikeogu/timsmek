@@ -20,8 +20,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $art = Article::all();
-        return view('admin/allarticles',['article'=>$art]);
+        $art = Article::paginate(10);
+        return view('admin/allarticles',['art'=>$art]);
     }
 
     /**
@@ -134,6 +134,21 @@ class ArticleController extends Controller
         $art = Article::find($article);
         $art->delete();
         return redirect(route('artilce.index'))->with('sucess','Article Deleted');
+    }
+    public function downloadPDF($id){
+        $article= Article::find($id);
+        //dd($article);
+        $file_path = public_path('/storage/article_Content/'.$article->content);
+        return response()->download($file_path);
+
+
+    }
+    public function readBook($id)
+    {
+        $file = Article::find($id);
+        $file_path = public_path('/storage/article_Content/'.$file->content);
+        return response()->file($file_path);
+
     }
 
     

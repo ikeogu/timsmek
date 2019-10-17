@@ -38,61 +38,61 @@
            {{-- For the Books to display of the homepage --}}
            <div class="row">
 
-              @if($book->count() > 2)
-                  @foreach ($book as $item)
-                      <div class="col-md-3 col-lg-3">
-                          <div class="card-container manual-flip">
-                              <div class="card">
-                                  <div class="front mb-5">
-                                      <div class="product">
-                                          <img class="img-circle" src="/storage/cover_page/{{$item->cover_page}}" />
-                                      </div>
-                                      <div class="content text-center">
-                                          <h6 class="f-w-600 m-b-10">{{$item->title}}</h6>
-                                          <hr>
-                                          <p class="price">{{$item->year_pub}}</p>
-                                          @if($item->status === 1)
-                                              <p class="price">#{{$item->price ?? ''}}</p>
-                                              <a href="#" class="buy btn">Buy <i class="fa fa-shopping-cart"></i></a>
-                                          @else
-                                              <p class="price">Free</p>
-                                              <a href="#" class="buy btn">Download <i class="fa fa-download"></i></a>
-                                          @endif    
-                                          <div class="footer">
-                                          <button class="btn btn-simple" onclick="rotateCard(this)">
-                                              <i class="fa fa-mail-forward"></i> view details
-                                          </button>
-                                          </div>
-                                      </div>
-                                  </div> <!-- end front panel -->
-                              
-                                  <div class="back mb-5">
-                                      @foreach ($book->authors as $a)
-                                      <div class="user">
-                                          <img class="img-circle" src="/storage/authors/{{$a->photo}}" />
-                                      </div>
-                                      <div class="content text-center">
-                                          <div class="main">
-                                          <h6 class="m-b-10"> {{$a->name}}</h6>
-                                          <a href="/authors/{{$a->id}}">View more</a>
-                                          @endforeach
-                                          <hr> 
-                                          <h6 class="m-b-10">Cat: {{$a->category()->name}}</h6>
-                                          <h6 class="m-b-10">Ava: {{$a->available}}</h6>
-                                          <p class="text-muted m-t-15">Description</p>
-                                          <p class="text-muted m-t-15">{{$item->description}}</p>
-                                      </div>
-                                  </div>
+              @if($book->count() > 0)
+              @foreach ($book as $item)
+              <div class="col-md-3 col-lg-3">
+                  <div class="card-container manual-flip">
+                      <div class="card">
+                          <div class="front mb-5">
+                              <div class="product">
+                                  <img class="img-circle" src="/storage/cover_page/{{$item->cover_page}}" />
+                              </div>
+                              <div class="content text-center">
+                                  <h6 class="f-w-600 m-b-10">{{$item->title}}</h6>
+                                  <hr>
+                                  <p class="price">{{$item->year_pub}}</p>
+                                  @if($item->status === 1)
+                                      <p class="price">₦{{$item->price}}</p>
+                                      <a href="#" class="buy btn">Buy <i class="fa fa-shopping-cart"></i></a>
+                                  @else
+                                      <p class="price">Free</p>
+                                      <a href="{{route('down',[$item->id])}}" class="buy btn">Download <i class="fa fa-download"></i></a>
+                                  @endif    
                                   <div class="footer">
-                                      <button class="btn price p-2 mb-2" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
-                                      <i class="fa fa-reply"></i> Back
-                                      </button>
+                                  <button class="btn btn-simple" onclick="rotateCard(this)">
+                                      <i class="fa fa-mail-forward"></i> view details
+                                  </button>
                                   </div>
-                                  </div> <!-- end back panel -->
-                              </div> <!-- end card -->
-                          </div> <!-- end card-container -->
-                      </div>
-                  @endforeach
+                              </div>
+                          </div> <!-- end front panel -->
+                      
+                          <div class="back mb-5">
+                              
+                              <div class="user">
+                              <img class="img-circle" src="/storage/authors/{{$item->author->photo}}" height="50" width="60">
+                              </div>
+                              <div class="content text-center">
+                                  <div class="main">
+                                  <h6 class="m-b-10">{{$item->author->name}} </h6>
+                                  <a href="/authors/{{$item->author->id}}">View more</a>
+                                  
+                                  <hr> 
+                                  <h6 class="m-b-10">Cat: {{$item->category->name}}</h6>
+                                  <h6 class="m-b-10">Ava: {{$item->available}}</h6>
+                                  <a href="/publish/{{$item->id}}">About book</a>
+                                  <p class="text-muted m-t-15">{{str_limit($item->description, $limit = 30, $end = '...')}}</p>
+                              </div>
+                          </div>
+                          <div class="footer">
+                              <button class="btn price p-2 mb-2" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
+                              <i class="fa fa-reply"></i> Back
+                              </button>
+                          </div>
+                          </div> <!-- end back panel -->
+                      </div> <!-- end card -->
+                  </div> <!-- end card-container -->
+              </div>
+          @endforeach
                   {{$book->links()}}
               @else    
           
@@ -266,174 +266,7 @@
                       </div> <!-- end card -->
                   </div> <!-- end card-container -->
               </div>
-              <div class="col-md-3 col-lg-3">
-                  <div class="card-container manual-flip">
-                      <div class="card">
-                          <div class="front mb-5">
-                              <div class="product">
-                              <img class="img-circle" src="img/book1.jpg" />
-                              </div>
-                              <div class="content text-center">
-                              <h6 class="f-w-600 m-b-10">MySQl Database</h6>
-                              <hr>
-                              <p class="price">$229.99</p>
-                              <a href="#" class="buy btn">Buy <i class="fa fa-shopping-cart"></i></a>
-                              <div class="footer">
-                                  <button class="btn btn-simple" onclick="rotateCard(this)">
-                                  <i class="fa fa-mail-forward"></i> view details
-                                  </button>
-                              </div>
-                              </div>
-                          </div> <!-- end front panel -->
-                          <div class="back mb-5">
-                              <div class="user">
-                                  <img class="img-circle" src="img/authors/rotating_card_profile2.png" />
-                              </div>
-                              <div class="content text-center">
-                                  <div class="main">
-                                      <h6 class="m-b-10"> prof Alessa Robert</h6>
-                                      <p class="text-muted">Active | Male </p>
-                                      <!-- <hr> -->
-                                      <p class="text-muted m-t-15">Edu Level: PHD</p>
-                                      <p class="text-muted m-t-15">"Lamborghini Mercy Your chick she so thirsty I'm in that two
-                                      seat Lambo"</p>
-                                  </div>
-                              </div>
-                              <div class="footer">
-                                  <button class="btn price p-2 mb-2" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
-                                      <i class="fa fa-reply"></i> Back
-                                  </button>
-                              </div>
-                          </div> <!-- end back panel -->
-                      </div> <!-- end card -->
-                  </div> <!-- end card-container -->
-              </div>
-              <div class="col-md-3 col-lg-3">
-                  <div class="card-container manual-flip">
-                      <div class="card">
-                          <div class="front mb-5">
-                              <div class="product">
-                                  <img class="img-circle" src="img/book1.jpg" />
-                              </div>
-                              <div class="content text-center">
-                                  <h6 class="f-w-600 m-b-10">MySQl Database</h6>
-                                  <hr>
-                                  <p class="price">$229.99</p>
-                                  <a href="#" class="buy btn">Buy <i class="fa fa-shopping-cart"></i></a>
-                                  <div class="footer">
-                                      <button class="btn btn-simple" onclick="rotateCard(this)">
-                                      <i class="fa fa-mail-forward"></i> view details
-                                      </button>
-                                  </div>
-                              </div>
-                          </div> <!-- end front panel -->
-                          <div class="back mb-5">
-                              <div class="user">
-                                  <img class="img-circle" src="img/authors/rotating_card_profile2.png" />
-                              </div>
-                              <div class="content text-center">
-                                  <div class="main">
-                                      <h6 class="m-b-10"> prof Alessa Robert</h6>
-                                      <p class="text-muted">Active | Male </p>
-                                      <!-- <hr> -->
-                                      <p class="text-muted m-t-15">Edu Level: PHD</p>
-                                      <p class="text-muted m-t-15">"Lamborghini Mercy Your chick she so thirsty I'm in that two
-                                      seat Lambo"</p>
-                                  </div>
-                              </div>
-                              <div class="footer">
-                                  <button class="btn price p-2 mb-2" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
-                                      <i class="fa fa-reply"></i> Back
-                                  </button>
-                              </div>
-                          </div> <!-- end back panel -->
-                      </div> <!-- end card -->
-                  </div> <!-- end card-container -->
-              </div>
-              <div class="col-md-3 col-lg-3">
-              <div class="card-container manual-flip">
-                  <div class="card">
-                          <div class="front mb-5">
-                              <div class="product">
-                              <img class="img-circle" src="img/book1.jpg" />
-                              </div>
-                              <div class="content text-center">
-                              <h6 class="f-w-600 m-b-10">MySQl Database</h6>
-                              <hr>
-                              <p class="price">$229.99</p>
-                              <a href="#" class="buy btn">Buy <i class="fa fa-shopping-cart"></i></a>
-                              <div class="footer">
-                                  <button class="btn btn-simple" onclick="rotateCard(this)">
-                                  <i class="fa fa-mail-forward"></i> view details
-                                  </button>
-                              </div>
-                              </div>
-                          </div> <!-- end front panel -->
-                          <div class="back mb-5">
-                              <div class="user">
-                                  <img class="img-circle" src="img/authors/rotating_card_profile2.png" />
-                              </div>
-                              <div class="content text-center">
-                                  <div class="main">
-                                      <h6 class="m-b-10"> prof Alessa Robert</h6>
-                                      <p class="text-muted">Active | Male </p>
-                                      <!-- <hr> -->
-                                      <p class="text-muted m-t-15">Edu Level: PHD</p>
-                                      <p class="text-muted m-t-15">"Lamborghini Mercy Your chick she so thirsty I'm in that two
-                                      seat Lambo"</p>
-                                  </div>
-                              </div>
-                              <div class="footer">
-                                  <button class="btn price p-2 mb-2" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
-                                      <i class="fa fa-reply"></i> Back
-                                  </button>
-                              </div>
-                          </div> <!-- end back panel -->
-                      </div> <!-- end card -->
-                  </div> <!-- end card-container -->
-              </div>
-              <div class="col-md-3 col-lg-3">
-                  <div class="card-container manual-flip">
-                      <div class="card">
-                          <div class="front mb-5">
-                              <div class="product">
-                                  <img class="img-circle" src="img/book1.jpg" />
-                              </div>
-                              <div class="content text-center">
-                                  <h6 class="f-w-600 m-b-10">MySQl Database</h6>
-                                  <hr>
-                                  <p class="price">$229.99</p>
-                                  <a href="#" class="buy btn">Buy <i class="fa fa-shopping-cart"></i></a>
-                                  <div class="footer">
-                                      <button class="btn btn-simple" onclick="rotateCard(this)">
-                                      <i class="fa fa-mail-forward"></i> view details
-                                      </button>
-                                  </div>
-                              </div>
-                          </div> <!-- end front panel -->
-                          <div class="back mb-5">
-                              <div class="user">
-                                  <img class="img-circle" src="img/authors/rotating_card_profile2.png" />
-                              </div>
-                              <div class="content text-center">
-                                  <div class="main">
-                                      <h6 class="m-b-10"> prof Alessa Robert</h6>
-                                      <p class="text-muted">Active | Male </p>
-                                      <!-- <hr> -->
-                                      <p class="text-muted m-t-15">Edu Level: PHD</p>
-                                      <p class="text-muted m-t-15">"Lamborghini Mercy Your chick she so thirsty I'm in that two
-                                      seat Lambo"</p>
-                                  </div>
-                              </div>
-                              <div class="footer">
-                                  <button class="btn price p-2 mb-2" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
-                                      <i class="fa fa-reply"></i> Back
-                                  </button>
-                              </div>
-                          </div> <!-- end back panel -->
-                      </div> <!-- end card -->
-                  </div> <!-- end card-container -->
-              </div>
+              
               @endif
           </div>
 
@@ -443,7 +276,7 @@
         <section id="recent-blog-post">
           <div class="header text-center">
             <h2>Our Blog</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis mollitia cum tempore sequi, vel</p>
+            <p>Our Daily and recently posts, including other intresting Topic.</p>
           </div>
           <div class="container">
               <div class="row">
@@ -452,12 +285,12 @@
                           <div class="col-md-4">
                               <a href="/blog/{{$item->id}}" class="blog-card mt-5">
                                 <div class="card-img">
-                                <img src="/storage/blog_post/{{$item->id}}" alt="" class="img-fluid">
+                                <img src="/storage/blog_post/{{$item->image}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="blog-title">
                                   <h3 class="heading">{{$item->caption}}</h3>
                                   <date>{{$item->created_at->diffForHumans()}} {{$item->writter}}<i class="icon ion-md-chatbubbles"></i> </date>
-                                  <p>{{str_limit($item->body, $limit = 20, $end = '...') }}</p>
+                                  <p>{{str_limit($item->body, $limit = 30, $end = '...') }}</p>
                                 </div>
                               </a>
                             </div>
@@ -465,7 +298,7 @@
                       {{$blog->links()}}
                   @else
                       <div class="col-md-8">
-                      <h3>We Don't have recent Post on Our Blog.</h3>
+                        <h3>We Don't have recent Post on Our Blog.</h3>
                       </div>
                   @endif
               </div>

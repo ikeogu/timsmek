@@ -5,12 +5,12 @@
               Recent Publications
             </div>
             <div class="card-body">
-              @if (count($recent ) > 2)
+              @if (count($recent ) > 0)
                  @foreach ($recent  as $item)
                   <div class="card-inner">
                     <p><i class="icon ion-md-journal mr-2"></i>{{$item->title}}</p>
                     <ul>
-                      <li>by: <span>{{$item->author()->name}}</span></li>
+                      <li>by: <span>{{$item->author->name}}</span></li>
                       <li>Date: <span>{{$item->created_at->diffForHumans()}}</span></li>
                     </ul>
                   </div>
@@ -18,29 +18,6 @@
               @else
               
 
-              <div class="card-inner">
-                <p><i class="icon ion-md-journal mr-2"></i>Notes on Language and Linguistics</p>
-                <ul>
-                  <li>by: <span>Stephen john</span></li>k7uzCn1op mail.throneofpowerandfireministry.org port 587
-                  <li>Date: <span>22-11-2019</span></li>
-                </ul>
-              </div>
-
-              <div class="card-inner">
-                <p><i class="icon ion-md-journal mr-2"></i>Notes on Language and Linguistics</p>
-                <ul>
-                  <li>by: <span>Stephen john</span></li>
-                  <li>Date: <span>22-11-2019</span></li>
-                </ul>
-              </div>
-
-              <div class="card-inner">
-                <p><i class="icon ion-md-journal mr-2"></i>Notes on Language and Linguistics</p>
-                <ul>
-                  <li>by: <span>Stephen john</span></li>
-                  <li>Date: <span>22-11-2019</span></li>
-                </ul>
-              </div>
 
               <div class="card-inner">
                 <p><i class="icon ion-md-journal mr-2"></i>Notes on Language and Linguistics</p>

@@ -18,6 +18,7 @@ class CreateEditorsTable extends Migration
             $table->string('name');
             $table->string('photo');
             $table->string('bio');
+            $table->string('email');
             $table->timestamps();
         });
     }

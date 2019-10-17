@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -36,4 +36,11 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    //  public function redirectTo(){
+    //     if(Auth::user()->isAdmin == 1 || Auth::user()->isAdmin ==2){
+    //          return redirect(route('admindashboard'));
+    //     }
+    //     return redirect('/home');
+    //  }
 }

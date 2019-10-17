@@ -14,12 +14,12 @@
                         <div class="col-md-4">
                             <a href="/blog/{{$item->id}}" class="blog-card mt-5">
                               <div class="card-img">
-                              <img src="/storage/blog_post/{{$item->id}}" alt="" class="img-fluid">
+                              <img src="/storage/blog_post/{{$item->image}}" alt="" class="img-fluid">
                               </div>
                               <div class="blog-title">
                                 <h3 class="heading">{{$item->caption}}</h3>
                                 <date>{{$item->created_at->diffForHumans()}} {{$item->writter}}<i class="icon ion-md-chatbubbles"></i> </date>
-                                <p>{{str_limit($item->body, $limit = 20, $end = '...') }}</p>
+                                <p>{{str_limit($item->body, $limit = 50, $end = '...') }}</p>
                               </div>
                             </a>
                           </div>

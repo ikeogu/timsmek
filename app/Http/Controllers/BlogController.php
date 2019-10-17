@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+    public function __constructor(){
+        $this->middleware('auth')->except(['index','show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,25 +17,21 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blog = Blog::paginate(10);
+        $blog = Blog::paginate(3);
         return view('blog/index',['blog'=>$blog]);
     }
-    public function index2()
-    {
-        $blog = Blog::all();
-        return view('admin/allpost',['blog'=>$blog]);
-    }
+    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-        return view('blog/create');
-    }
+    // public function create()
+    // {
+    //     //
+    //     return view('blog/create');
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -44,11 +43,13 @@ class BlogController extends Controller
     {
         $this->validate(request(),[
             'caption'=> 'required',
-            'body'=> 'required'
+            'body'=> 'required',
+            'writter'=> 'required',
+            'image'=>'required'
         ]);
         if($request->hasFile('image')){
             //get file name with extension
-            $fileNameWithExt = $request->file('cover_page_front')->getClientOriginalName();
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
             //get just file name
             $filenames = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
             //get just extension
@@ -66,6 +67,9 @@ class BlogController extends Controller
         $blog->caption = $request->caption;
         $blog->body = $request->body;
         $blog->writter = $request->writter;
+        if($blog->save()){
+            return redirect(route('blogs'))->with('success','Blog Posted');
+        }
     }
 
     /**
@@ -76,9 +80,9 @@ class BlogController extends Controller
      */
     public function show($blog)
     {
-        //
+        $recent = Blog::latest()->take(4)->get();
         $blog = Blog::find($blog);
-        return view('blog/show',['blog'=>$blog]);
+        return view('blog/show',['blog'=>$blog,'recent'=>$recent]);
     }
 
     /**
@@ -101,11 +105,11 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $blog)
+    public function update(Request $request,$blog)
     {
         //
         Blog::whereId($blog)->update($request->except(['_method','_token']));
-        return redirect(route('blog.edit'))->with('success','Updated');
+        return redirect(route('blogs'))->with('success','Updated');
     }
 
     /**
@@ -119,6 +123,6 @@ class BlogController extends Controller
         //
         $blog = Blog::find($blog);
         $blog->delete();
-        return redirect(route('blog'))->wih('Danger','Post Deleted');
+        return redirect(route('blogs'))->wih('Danger','Post Deleted');
     }
 }

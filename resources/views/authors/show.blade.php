@@ -8,7 +8,7 @@
               <img src="/storage/authors/{{$author->photo}}" alt="{{$author->photo}}" class="img-fluid">
               </div>
               <div class="row justify-content-center user-social-link">
-                <div class="col-auto"><a href="{{$author->facebook}}"><i class="fa fa-facebook text-facebook"></i></a></div>
+                <div class="col-auto"><a href="{{$author->instagram}}"><i class="fa fa-facebook text-facebook"></i></a></div>
                 <div class="col-auto"><a href="{{$author->linkin}}"><i class="fa fa-linkedin text-linkedin"></i></a></div>
                 <div class="col-auto"><a href="{{$author->twitter}}"><i class="fa fa-twitter text-twitter"></i></a></div>
               </div>
@@ -26,7 +26,7 @@
                 <hr>
                 <div class="about-me">
                   <h4 class="header">About me</h4>
-                  <p class="discription">{{$author->description}}</p>
+                  <p class="discription">{{$author->biography}}</p>
                 </div>
               </div>
             </div>
@@ -36,18 +36,19 @@
       <hr>
       <section id="my-books">
         <div class="container">
-          <h2 class="header">Authors books</h2>
+          <h2 class="header">Author's books</h2>
           <div class="row m-auto">
-              @foreach ($author->books as $item)
+               @foreach ($book as $item) 
               
                 <div class="col-md-3 col-6">
                     <div class="author-book">
                     <a href="/publish/{{$item->id}}">
-                      <img src="/storage/published/{{$item->cover}}" alt="{{$item->cover}}" class="img-fluid">
+                      <img src="/storage/cover_page/{{$item->cover_page}}" alt="{{$item->cover_page}}" class="img-fluid" ><br>
+                      <strong>{{$item->title}}</strong>
                       </a>
                     </div>
                 </div> 
-              @endforeach
+              @endforeach 
             
             
           </div>
