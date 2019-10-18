@@ -7,7 +7,7 @@ use App\Article;
 use App\Publish;
 use Illuminate\Http\Request;
 use Auth;
-
+use App\Category;
 class ArticleController extends Controller
 {   public function __construct()
     {
@@ -31,8 +31,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $recent = Publish::latest()->take(8)->get();;
-         return view('pages/up_aricle',['recent'=>$recent]);
+        $recent = Publish::latest()->take(8)->get();
+        $cat = Category::all();
+         return view('pages/up_aricle',['recent'=>$recent,'cat'=>$cat]);
        
     }
 

@@ -40,6 +40,7 @@
 
               @if($book->count() > 0)
               @foreach ($book as $item)
+                
               <div class="col-md-3 col-lg-3">
                   <div class="card-container manual-flip">
                       <div class="card">
@@ -53,10 +54,15 @@
                                   <p class="price">{{$item->year_pub}}</p>
                                   @if($item->status === 1)
                                       <p class="price">₦{{$item->price}}</p>
-                                      <a href="#" class="buy btn">Buy <i class="fa fa-shopping-cart"></i></a>
+                                      
+                                      <button type="button" class=" buy btn btn-default" data-toggle="modal" data-target="#exampleModalCenter">
+                                            Buy <i class="fa fa-shopping-cart"></i>
+                                     </button>
+                                     
                                   @else
                                       <p class="price">Free</p>
-                                      <a href="{{route('down',[$item->id])}}" class="buy btn">Download <i class="fa fa-download"></i></a>
+                                     
+                                      <a href="{{ URL::signedRoute('down',['key'=> $item->id])}}" class="buy btn">Download <i class="fa fa-download"></i></a>
                                   @endif    
                                   <div class="footer">
                                   <button class="btn btn-simple" onclick="rotateCard(this)">
@@ -92,6 +98,7 @@
                       </div> <!-- end card -->
                   </div> <!-- end card-container -->
               </div>
+               
           @endforeach
                   {{$book->links()}}
               @else    
@@ -306,6 +313,70 @@
         </section>
       </div>
       @include('partials/sidebar2')
+
+        
     </div>
   </div>
+  @foreach ($book as $item)
+      @if($item->status === 1)
+        {{-- for modal --}}
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"  aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+                        
+                            <div class="row" style="margin-bottom:40px;">
+                                <div class="col-md-8 col-md-offset-2">
+                                <p>
+                                    <div>
+                                    <p> {{$item->title}}</p>
+                                    <p>  ₦ {{$item->price}}</p>
+                                    </div>
+                                </p>
+                                <input type="text" name="email" value="" placeholder="Email" class="form-control"> {{-- required --}}
+                                
+                                <input type="hidden" name="amount" value="{{$item->price * 100}}"> {{-- required in kobo --}}
+                                <input type="hidden" name="quantity" value="1">
+                                <input type="hidden" name="metadata" value="{{ json_encode($array = ['book_id' => $item->id, 'title'=>$item->title]) }}" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
+                                <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
+                                <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"> {{-- required --}}
+                                {{ csrf_field() }} {{-- works only when using laravel 5.1, 5.2 --}}
+                    
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
+                    
+                    
+                                <p>
+                                    <button class="btn btn-success btn-lg btn-block" type="submit" value="Pay Now!">
+                                    <i class="fa fa-plus-circle fa-lg"></i> Pay Now!
+                                    </button>
+                                </p>
+                                </div>
+                            </div>
+                        
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        {{-- for modal --}}
+              
+      @endif
+  @endforeach
+  
 @endsection
+
+<!-- Button trigger modal -->
+   
+      <!-- Modal -->
+    

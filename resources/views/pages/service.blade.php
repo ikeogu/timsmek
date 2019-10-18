@@ -54,7 +54,8 @@
           <p class="about-text">{{$item->description}}</p>
         </div>
       </div>
-      @endsection
+      @endforeach
+     
     </div>
   </section>
   <hr>

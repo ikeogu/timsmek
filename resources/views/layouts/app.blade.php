@@ -79,10 +79,12 @@
 					<li class="list"><a href="{{route('service.index')}}">Services</a></li>
 					<li class="list"><a href="{{route('blog.index')}}">Blog</a></li>
 					<li class="list"><a href="{{route('article.create')}}">Submit article</a></li>
-				<li  class="list"><a href="{{route('contact.create')}}"></i> Contact us</a></li> 
-				@if(Auth::user()->isAdmin === 1)
-					<li class="list">	<a href="{{route('admindashboard')}}"> Admin DashBoard</a></li>
-				@endif
+				<li  class="list"><a href="{{route('contact.create')}}"></i> Contact us</a></li>
+				@auth 
+					@if(Auth::user()->isAdmin == 1)
+						<li class="list">	<a href="{{route('admindashboard')}}"> Admin DashBoard</a></li>
+					@endif
+				@endauth	
 				</ul>
 				<ul class="small-ul">
 					<li class="small"><a href="/register">Sign up</a></li>
@@ -199,6 +201,10 @@
 					this.className += " active";
 				});
 			}
+
+			$('#myModal').on('shown.bs.modal', function () {
+  			$('#myInput').trigger('focus')
+			});
 		</script>
 		<script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: 'a6f969f6-486d-4233-9337-660fc6f6310a', f: true }); done = true; } }; })();</script>
 	

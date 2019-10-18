@@ -38,9 +38,9 @@
               <div class="form-group mb-4 mr-sm-2">
                 <select id="inputState" class="form-control" name="cat_id">
                   <option >Select categories</option>
-                  <option value="1">Stoty</option>
-                  <option  value="2">Novel</option>
-                  <option  value="3">Provers</option>
+                    @foreach($cat as $item)
+                      <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
                 </select>
               </div>
               <div class="form-group mb-4 mr-sm-2">

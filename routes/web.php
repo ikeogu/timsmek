@@ -11,6 +11,9 @@
 |
 */
 use App\Http\Middleware\IsAdmin;
+use App\Mail\Mailtrap;
+use Illuminate\Support\Facades\Mail;
+
 
 
 Route::get('/', 'HomeController@first');
@@ -63,5 +66,11 @@ Route::get('/readfile/{id}','ArticleController@readBook')->name('preview');
 
 // for Published article
 
-Route::get('/download/{id}','PublishController@downloadPDF')->name('down');
+Route::get('/download/{id}','PublishController@downloadPDF')->name('down')->middleware('signed');
 Route::get('/read/{id}','PublishController@readBook')->name('prev');
+
+// for payment
+Route::post('/pay', 'Payment@redirectToGateway')->name('pay');
+Route::get('/payment/callback', 'Payment@handleGatewayCallback');
+// email
+Route::post('/send', 'EmailController@send');
