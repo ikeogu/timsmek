@@ -25,7 +25,7 @@
                 </ul>
                 <hr>
                 <div class="about-me">
-                  <h4 class="header">About me</h4>
+                  <h4 class="header">About {{$author->name}}</h4>
                   <p class="discription">{{$author->biography}}</p>
                 </div>
               </div>

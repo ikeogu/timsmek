@@ -24,7 +24,7 @@
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Add Service</h6>
+              <h6 class="m-0 font-weight-bold text-danger">Add Service</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -43,7 +43,7 @@
                             <textarea name="description" id="" cols="36" rows="2" placeholder="Description"
                             class="p-3 form-control"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-user btn-block text-white">
+                        <button type="submit" class="btn btn-danger btn-user btn-block text-white">
                         Add Service
                          </button>
                 <hr>
@@ -58,7 +58,7 @@
           <!-- Area Chart -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">View All Services</h6>
+              <h6 class="m-0 font-weight-bold text-danger">View All Services</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -77,7 +77,7 @@
                                 <td>{{$item->name}}</td>
                                 <td class="text-center">{{$item->description}}</td>
                                 <td class="d-flex justify-content-between">
-                                <a href="/service/{{$item->id}}/edit" class="btn btn-primary btn-user btn-block">Edit</a>
+                                <a href="/service/{{$item->id}}/edit" class="btn btn-danger btn-user btn-block">Edit</a>
 
                                     <form action="{{ route('service.destroy' , $item->id)}}" method="POST">
                                             <input name="_method" type="hidden" value="DELETE">

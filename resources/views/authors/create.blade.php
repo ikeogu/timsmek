@@ -23,7 +23,7 @@
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Add Authors</h6>
+              <h6 class="m-0 font-weight-bold text-danger">Add Authors</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -82,7 +82,7 @@
                     placeholder="Enter LinkInd link (optional) " name="linkin">
                 </div>
                
-                <button type="submit" class="btn btn-primary btn-user btn-block">
+                <button type="submit" class="btn btn-danger btn-user btn-block">
                   Add Authour
                 </button>
                 <hr>

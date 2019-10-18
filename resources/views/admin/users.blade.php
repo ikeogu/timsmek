@@ -18,7 +18,7 @@
 </div> 
 <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">All Registered users</h6>
+          <h6 class="m-0 font-weight-bold text-danger">All Registered users</h6>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -55,7 +55,7 @@
                         <td>{{$item->isAdmin}}</td>
                         <td>{{$item->created_at->diffForHumans()}}</td>
                         <td class="d-flex justify-content-between flex-wrap">
-                        <a href="{{route('isAdmin',[$item->id])}}" class="btn btn-primary btn-user btn-block">Make  Admin</a>
+                        <a href="{{route('isAdmin',[$item->id])}}" class="btn btn-danger btn-user btn-block">Make  Admin</a>
                         <a href="{{route('RisAdmin',[$item->id])}}"  class="btn btn-danger btn-user btn-block">Remove Admin</a>
                         </td>
                       </tr> 

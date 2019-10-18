@@ -23,7 +23,7 @@
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Edit Blog news</h6>
+              <h6 class="m-0 font-weight-bold text-danger">Edit Blog news</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -49,7 +49,7 @@
                   <input type="text" class="form-control form-control-user" id="Name" aria-describedby="name"
                 value="{{$blog->writter}}" name="writter">
                 </div>
-                <button class="btn btn-primary btn-user btn-block" type="submit">
+                <button class="btn btn-danger btn-user btn-block" type="submit">
                   Update blog
                 </button>
                 <hr>

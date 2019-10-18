@@ -31,7 +31,7 @@
   
 
 <body>
-  <div >
+  
         
 		<header>
 			<div id="top-header">
@@ -78,11 +78,13 @@
 					<li class="list"><a href="{{route('publish.index')}}">Store</a></li>
 					<li class="list"><a href="{{route('service.index')}}">Services</a></li>
 					<li class="list"><a href="{{route('blog.index')}}">Blog</a></li>
-					<li class="list"><a href="{{route('article.create')}}">Submit article</a></li>
+					<li class="list"><a href="{{route('article.create')}}">Submit an Article</a></li>
 				<li  class="list"><a href="{{route('contact.create')}}"></i> Contact us</a></li>
 				@auth 
 					@if(Auth::user()->isAdmin == 1)
 						<li class="list">	<a href="{{route('admindashboard')}}"> Admin DashBoard</a></li>
+					@elseif(Auth::user()->isAdmin == 2)
+					<li class="list">	<a href="{{route('admindashboard')}}"> Editor DashBoard</a></li>
 					@endif
 				@endauth	
 				</ul>
@@ -110,15 +112,15 @@
 						</div>
 						<div class="col-md-4 m-0">
 							<div class="links ml-5">
-								<h4>Useful Links</h4>
+								<h4>Quick links</h4>
 								<ul class="nav-link">
-								<li><a href="/">Home</a></li>
-								<li><a href="/about">About</a></li>
-								<li ><a href="{{route('publish.index')}}">Store</a></li>
-								<li ><a href="{{route('service.index')}}">Services</a></li>
-								<li ><a href="{{route('blog.index')}}">Blog</a></li>
-								<li ><a href="{{route('article.create')}}">Submit article</a></li>
-								<li ><a href="{{route('contact.create')}}"></i> Contact us</a></li> 
+									<li><a href="{{url('/')}}">Home</a></li>
+									<li><a href="{{url('/about')}}">About</a></li>
+									<li ><a href="{{route('publish.index')}}">Store</a></li>
+									<li ><a href="{{route('service.index')}}">Services</a></li>
+									<li ><a href="{{route('blog.index')}}">Blog</a></li>
+									<li ><a href="{{route('article.create')}}">Submit article</a></li>
+									<li ><a href="{{route('contact.create')}}"></i> Contact us</a></li> 
 								</ul>
 							</div>
 						</div>
@@ -138,12 +140,13 @@
 							</div>
 						</div>
 					</div>
-					<p  class="justify-content-center">&copy; Copyright, Timsek, All Right Reservered</p>
-					<p>Design by  <a href="#">Kaiyleb_dev</a> &&  <a href="https://emmanuel-chidera.netlify.com">Emmanuel</a></p> 
-			  </div>
+					
+				</div>
 			</section>
-			<section>
-			 
+
+			<section class="container-fluid" id="quick-links">
+				<p  class="justify-content-center"> <span>Copyright &copy; {{date('Y')}} Timsmek Global Publishers. All rights reserved </span></p>
+				<p class="justify-content-left">Design by  <a href="#">Kaiyleb_dev</a> &&  <a href="https://emmanuel-chidera.netlify.com">Emmanuel</a></p> 
 			  
 			</section>
 		</footer>
@@ -206,8 +209,27 @@
   			$('#myInput').trigger('focus')
 			});
 		</script>
-		<script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: 'a6f969f6-486d-4233-9337-660fc6f6310a', f: true }); done = true; } }; })();</script>
+		<script type='text/javascript' data-cfasync='false'>
+			window.purechatApi = { l: [], t: [], on: function () {
+				 this.l.push(arguments);
+				}
+			 }; 
+			 (function () { 
+				 var done = false; 
+				 var script = document.createElement('script'); 
+				 script.async = true;
+				 script.type = 'text/javascript'; 
+				script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript';
+				document.getElementsByTagName('HEAD').item(0).appendChild(script); 
+				script.onreadystatechange = script.onload = function (e) { 
+					if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+						 var w = new PCWidget({c: 'a6f969f6-486d-4233-9337-660fc6f6310a', f: true });
+						  done = true; 
+					} 
+				};
+							 )();
+		</script>
 	
-</div>
+
 </body>
 </html>

@@ -5,7 +5,7 @@
         <!-- Area Chart -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">All Published Books</h6>
+            <h6 class="m-0 font-weight-bold text-danger">All Published Books</h6>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -39,7 +39,7 @@
                             <td class="text-center">{{$item->price}}</td>
                             <td class="text-center">{{$item->year_pub}}</td>
                             <td class="d-flex justify-content-between flex-wrap">
-                            <a href="/publish/{{$item->id}}/edit" class="btn btn-primary btn-user btn-block">Edit</a>
+                            <a href="/publish/{{$item->id}}/edit" class="btn btn-danger btn-user btn-block">Edit</a>
                              <form action="{{ route('publish.destroy' , [$item->id])}}" method="POST">
                                 <input name="_method" type="hidden" value="DELETE">
                                 {{ csrf_field() }}                                                       

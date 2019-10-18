@@ -23,7 +23,7 @@
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Post a Blog news</h6>
+              <h6 class="m-0 font-weight-bold text-danger">Post a Blog news</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -47,7 +47,7 @@
                   <input type="text" class="form-control form-control-user" id="Name" aria-describedby="name"
                     placeholder="Enter blog Author" name="writter">
                 </div>
-                <button class="btn btn-primary btn-user btn-block" type="submit">
+                <button class="btn btn-danger btn-user btn-block" type="submit">
                   Post blog
                 </button>
                 <hr>
@@ -62,7 +62,7 @@
           <!-- Area Chart -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">All blog post</h6>
+              <h6 class="m-0 font-weight-bold text-danger">All blog post</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -85,7 +85,7 @@
                             </td>
                             <td>{{$item->body}}</td>
                             <td class="d-flex justify-content-between flex-wrap">
-                              <a href="/blog/{{$item->id}}/edit" class="btn btn-primary btn-user btn-block">Edit</a>
+                              <a href="/blog/{{$item->id}}/edit" class="btn btn-danger btn-user btn-block">Edit</a>
 
                                 <form action="{{ route('blog.destroy' , $item->id)}}" method="POST">
                                         <input name="_method" type="hidden" value="DELETE">

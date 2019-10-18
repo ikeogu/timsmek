@@ -74,16 +74,12 @@
               <img src="/storage/editors/{{$item->photo}}" class="img-radius" alt="User-Profile-Image">
               </div>
               <h6 class="f-w-600 m-t-25 m-b-10">{{$item->name}}</h6>
-              <p class="text-muted"> {{$item->email}}</p>
+              
               <hr>
               <p class="m-t-15 text-muted">{{$item->bio}}
               </p>
               <hr>
-              <div class="row justify-content-center user-social-link">
-                <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
-                <div class="col-auto"><a href="#!"><i class="fa fa-linkedin text-linkedin"></i></a></div>
-                <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
-              </div>
+              
             </div>
           </div>
         </div> 

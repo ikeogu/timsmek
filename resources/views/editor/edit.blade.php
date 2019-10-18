@@ -4,7 +4,7 @@
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Edit Editor</h6>
+              <h6 class="m-0 font-weight-bold text-danger">Edit Editor</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -27,7 +27,7 @@
                   <textarea class="form-control "  
                  name="bio" cols="7" rows="8"> {{$editor->bio}}</textarea>
                  </div>
-                <button type="submit" class="btn btn-primary btn-user btn-block">
+                <button type="submit" class="btn btn-danger btn-user btn-block">
                   Update
                 </button>
                 <hr>

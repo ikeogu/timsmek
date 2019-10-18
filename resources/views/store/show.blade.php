@@ -24,7 +24,7 @@
             </ul>
             <hr>
             <div class="about-me">
-              <h4 class="header">About Book</h4>
+              <h4 class="header">About {{$book->title}}</h4>
               <p class="discription">{{$book->description}}</p>
             </div>
           </div>

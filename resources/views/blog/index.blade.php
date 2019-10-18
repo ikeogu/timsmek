@@ -6,6 +6,8 @@
         <div class="jumbotron">
           <h1>Our Blog</h1>
         </div>
+        <p>Read interesting topics from Timsmek Global Publishers.</p>
+
         <div class="row">
           <div class="col-md-8">
             <div class="row">

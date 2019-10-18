@@ -23,7 +23,7 @@
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Add Editor</h6>
+              <h6 class="m-0 font-weight-bold text-danger">Add Editor</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -43,9 +43,9 @@
                 </div>
                  <div class="form-group">
                   <textarea class="form-control "  
-                    placeholder="Enter Full name" name="bio" cols="7" rows="8"></textarea>
+                    placeholder="Enter Biography" name="bio" cols="7" rows="8"></textarea>
                  </div>
-                <button type="submit" class="btn btn-primary btn-user btn-block">
+                <button type="submit" class="btn btn-danger btn-user btn-block">
                   Add Editor
                 </button>
                 <hr>
@@ -60,7 +60,7 @@
           <!-- Area Chart -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">All Editor</h6>
+              <h6 class="m-0 font-weight-bold text-danger">All Editor</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -85,7 +85,7 @@
                         <td>{{$item->email}}</td>
                         <td>{{$item->bio}}</td>
                         <td class="d-flex justify-content-between flex-wrap">
-                        <a href="/editors/{{$item->id}}/edit" class="btn btn-primary btn-user btn-block">Edit</a>
+                        <a href="/editors/{{$item->id}}/edit" class="btn btn-danger btn-user btn-block">Edit</a>
 
                             <form action="{{ route('editors.destroy' , [$item->id])}}" method="POST">
                                 <input name="_method" type="hidden" value="DELETE">

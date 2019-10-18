@@ -13,7 +13,7 @@
                         <form class="form">
                             <div class="form-group mb-4 mr-sm-2">
                                 <select id="inputState" class="form-style" name="cat_id">
-                                    <option selected >Select categories</option>
+                                    <option selected >Sort by Category</option>
                                     @if ($cat->count() > 0)
                                         @foreach ($cat as $item)
                                             <option> <a href ="/publish/">{{$item->name}}</a></option>
@@ -23,7 +23,7 @@
                             </div>
                         </form>
                         <div class="sidebar-box">
-                            <h4 class="heading-sidebar">Categories</h4>
+                            <h4 class="heading-sidebar">Category</h4>
                             @if ($cat->count() > 0)
                                
                                     @foreach ($cat  as $item)

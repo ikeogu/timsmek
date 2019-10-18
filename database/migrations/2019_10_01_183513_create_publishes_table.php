@@ -18,6 +18,7 @@ class CreatePublishesTable extends Migration
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('author_id');
             $table->string('title');
+            $table->string('isbn');
             $table->string('price');
             $table->string('available');
             $table->string('content');

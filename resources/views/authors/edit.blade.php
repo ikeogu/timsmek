@@ -23,7 +23,7 @@
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Edit Authors</h6>
+              <h6 class="m-0 font-weight-bold text-danger">Edit Authors</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -83,7 +83,7 @@
                 value="{{$author->linkin}}" name="linkin">
                 </div>
                
-                <button type="submit" class="btn btn-primary btn-user btn-block">
+                <button type="submit" class="btn btn-danger btn-user btn-block">
                   Update Authour
                 </button>
                 <hr>

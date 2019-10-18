@@ -283,7 +283,7 @@
         <section id="recent-blog-post">
           <div class="header text-center">
             <h2>Our Blog</h2>
-            <p>Our Daily and recently posts, including other intresting Topic.</p>
+            <p>Read interesting topics from Timsmek Global Publishers.</p>
           </div>
           <div class="container">
               <div class="row">

@@ -29,10 +29,10 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/admin')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/adminI')}}">
                 <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -43,8 +43,9 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
+        @if( Auth::user()->isAdmin === 1 || Auth::user()->isAdmin === 2)
             <li class="nav-item active">
-                <a class="nav-link" href="{{url('/admin')}}">
+                <a class="nav-link" href="{{url('/adminI')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
             </li>
@@ -68,11 +69,7 @@
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Add Categories</span></a>
             </li>
-            <li class="nav-item active">
-            <a class="nav-link" href="{{route('service.create')}}">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Add Service</span></a>
-            </li>
+            
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -110,16 +107,24 @@
                     <span>Publish a  Book</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{route('blogs')}}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Blog Posts</span></a>
+            </li>
+        @endif
+            <li class="nav-item active">
+                 <a class="nav-link" href="{{route('service.create')}}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Add Service</span>
+              </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="payment.html">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Payment made</span></a>
             </li>
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('blogs')}}">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Blog Posts</span></a>
-            </li>
+           
              
 
             <li class="nav-item">
@@ -164,7 +169,7 @@
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                     aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
+                    <button class="btn btn-danger" type="button">
                         <i class="fas fa-search fa-sm"></i>
                     </button>
                     </div>
@@ -188,7 +193,7 @@
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                             aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-danger" type="button">
                             <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
@@ -242,7 +247,7 @@
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
                     class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
             </div>
 
@@ -301,7 +306,7 @@
                     <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Articles Pending Requests
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Articles (Pending Requests)
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{App\Article::count()}}</div>
                         </div>
@@ -327,7 +332,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                     <span>Copyright &copy; Timsmek Publishers Website {{date('Y')}}</span>
+                     <span>Copyright &copy; {{date('Y')}} Timsmek Global Publishers.<br>All rights reserved </span>
                 </div>
             </div>
         </footer>

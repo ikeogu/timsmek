@@ -78,11 +78,14 @@ class ArticleController extends Controller
         
 
         if($article->save()){
-            return redirect(route('article.create'))->with('success', 'Article Sent. Wait for our Response');
+            return redirect(route('article.submit'))->with('success', 'Your work has been recieved! <br>One of our editors will get back to you shortly.');
         }
 
     }
-
+     
+    public function submit(){
+        return view('pages/submit');
+    }
     /**
      * Display the specified resource.
      *

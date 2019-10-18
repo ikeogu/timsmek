@@ -56,7 +56,7 @@ class Payment extends Controller
         if($paid->save()){
 
             $book = Publish::findOrFail($book_id);
-            $url = URL::signedRoute('down', ['key'=> $book->id]);
+            $url = URL::temporarySignedRoute('down', now()->addMinutes(2880), ['key'=> $book->id]);
             Mail::to($paid->email)->send(new Mailtrap($url)); 
 
             return view('pages/thanks');

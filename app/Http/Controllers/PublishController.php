@@ -96,7 +96,7 @@ class PublishController extends Controller
         $book->price = $request->price;
         $book->available = $request->available;
         $book->year_pub = $request->year_pub;
-        
+        $book->isbn = $request->isbn;
         
         $book->category_id = $request->category_id;
         $book->description = $request->description;

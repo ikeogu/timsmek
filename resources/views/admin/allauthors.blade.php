@@ -22,7 +22,7 @@
         <!-- Area Chart -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">All Authours</h6>
+            <h6 class="m-0 font-weight-bold text-danger">All Authours</h6>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -31,7 +31,7 @@
                   <tr>
                     <th> Full Name</th>
                     <th>Sex</th>
-
+                    <th>Photo</th>
                     <th>Email</th>
                     <th>Date of Birth</th>
                     <th>Place of Birth</th>
@@ -47,6 +47,7 @@
                     @foreach ($authors as $item)
                     <tr>
                             <td>{{$item->name}}</td>
+                    <td><img src="/storage/authors/{{$item->photo}}"  class="img rounded" height="80" width="80"></td>
                             <td class="text-center">{{$item->sex}}</td>
                             <td class="text-center">{{$item->email}}</td>
                             <td class="text-center">{{$item->dob}}</td>
@@ -55,7 +56,7 @@
                             <td class="text-center">{{$item->book_authored}}</td>
                             <td class="text-center">{{$item->biography}}</td>
                             <td class="d-flex justify-content-between flex-wrap">
-                            <a href="/authors/{{$item->id}}/edit" class="btn btn-primary btn-user btn-block">Edit</a>
+                            <a href="/authors/{{$item->id}}/edit" class="btn btn-danger btn-user btn-block">Edit</a>
                             <form action="{{ route('authors.destroy' , $item->id)}}" method="POST">
                                     <input name="_method" type="hidden" value="DELETE">
                                     {{ csrf_field() }}                                                       
