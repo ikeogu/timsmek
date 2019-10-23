@@ -12,20 +12,33 @@
         
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="manifest" href="{{asset('manifest.json')}}">
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
-    <link rel="stylesheet"  href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet"  href="{{asset('css/slick.css')}}" />
+    <link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+  	<link href="{{asset('css/fontawesome.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <meta name="theme-color" content="#fafafa">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     
-
+    
+	<script>
+		if ('serviceWorker' in navigator && 'PushManager' in window ) {
+		  window.addEventListener('load', function() {
+			  navigator.serviceWorker.register('../service-worker.js').then(function(registration) {
+				  // Registration was successful
+				  console.log('ServiceWorker registration successful with scope: ', registration.scope);
+			  }, function(err) {
+				  // registration failed :(
+				  console.log('ServiceWorker registration failed: ', err);
+			  });
+		  });
+	  }
+  
+  </script>
 <head>
   
   
@@ -144,7 +157,7 @@
 				</div>
 			</section>
 
-			<section class="container-fluid" id="quick-links">
+			<section class="container-fluid" >
 				<p  class="justify-content-center"> <span>Copyright &copy; {{date('Y')}} Timsmek Global Publishers. All rights reserved </span></p>
 				<p class="justify-content-left">Design by  <a href="#">Kaiyleb_dev</a> &&  <a href="https://emmanuel-chidera.netlify.com">Emmanuel</a></p> 
 			  
@@ -154,20 +167,17 @@
 	
 	
 		<script src="{{asset('js/vendor/modernizr-3.7.1.min.js')}}"></script>
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script src="{{asset('/js/jquery-3.4.1.min.js')}}"
+			 crossorigin="anonymous"></script>
 		<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
-		<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+		<script type="text/javascript" src="{{asset('js/slick.min.js')}}"></script>
 		<script src="js/plugins.js"></script>
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-			crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-			crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-			crossorigin="anonymous"></script>
+		<script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"
+			></script>
+		<script src="{{asset('js/popper.min.js')}}"
+			></script>
+		<script src="{{asset('js/bootstrap.min.js')}}"
+			></script>
 		<script src="{{asset('js/main.js')}}"></script>
 	
 		<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
@@ -209,27 +219,8 @@
   			$('#myInput').trigger('focus')
 			});
 		</script>
-		<script type='text/javascript' data-cfasync='false'>
-			window.purechatApi = { l: [], t: [], on: function () {
-				 this.l.push(arguments);
-				}
-			 }; 
-			 (function () { 
-				 var done = false; 
-				 var script = document.createElement('script'); 
-				 script.async = true;
-				 script.type = 'text/javascript'; 
-				script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript';
-				document.getElementsByTagName('HEAD').item(0).appendChild(script); 
-				script.onreadystatechange = script.onload = function (e) { 
-					if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
-						 var w = new PCWidget({c: 'a6f969f6-486d-4233-9337-660fc6f6310a', f: true });
-						  done = true; 
-					} 
-				};
-							 )();
+		<script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: 'a6f969f6-486d-4233-9337-660fc6f6310a', f: true }); done = true; } }; })();
 		</script>
-	
 
 </body>
 </html>

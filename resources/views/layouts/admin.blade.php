@@ -111,7 +111,7 @@
                 <i class="fas fa-fw fa-user"></i>
                 <span>Blog Posts</span></a>
             </li>
-        @endif
+        @elseif(Auth::user()->isAdmin === 1)
             <li class="nav-item active">
                  <a class="nav-link" href="{{route('service.create')}}">
                 <i class="fas fa-fw fa-chart-area"></i>
@@ -145,7 +145,7 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
+            @endif
         </ul>
         <!-- End of Sidebar -->
 

@@ -7,7 +7,7 @@
       <div class="col-md-6 m-auto">
         <h5>Join our community of authors and readers. Sign up below.<br> It is easy and free.</h5>
         <div class="form-card mt-5">
-          <h4>Sign Up</h4>
+          <h4 class="text-center">Sign Up</h4>
           @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -93,14 +93,14 @@
               </div>
               <input id="password-confirm" type="password" class="form-control py-4" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
             </div>
-            <div>
-                <input type="checkbox" value="1" name="agree" height="50" width="15"><small> By clicking sidn up button below, you agree to our Terms and conditions and Privacy Policy.</small>
+            <div class="form-check mb-2">
+                <input type="checkbox" value="1" name="agree" class="form-check-input"><small> By clicking sidn up button below, you agree to our Terms and conditions and Privacy Policy.</small>
             </div>
-            <div>
-                <input type="checkbox" value="yes" name="newslater" height="50" width="15"><small> Subscribe me to Timsmek Newsletter.</small>
+            <div class="form-check mb-3">
+                <input type="checkbox" value="yes" name="newslater" class="form-check-input"><small> Subscribe me to Timsmek Newsletter.</small>
             </div>
             
-            <p>Already a member?<a href="{{url('/login')}}">Login here.</a></p>
+            <p class="text-center">Already a member?<a href="{{url('/login')}}"> Login here.</a></p>
             <button type="submit" class="butn mb-2 btn-fill ">Sign Up</button>
           </form>
         </div>
