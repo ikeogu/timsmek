@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('content')
     
     <div class="wrapper">
@@ -29,6 +29,21 @@
                         </div>
                     </div>
                     <div class="col-md-9 col-sm-12 mx-auto">
+                            <div class="form-card mt-5">
+                                    @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div><br />
+                                    @endif
+                                    @if (\Session::has('success'))
+                                    <div class="alert alert-success">
+                                        <p>{{ \Session::get('success') }}</p>
+                                    </div><br />
+                                  @endif
                         <div class="profile-header">
                             <h2>My Orders</h2>
                         </div>
@@ -82,13 +97,13 @@
                                     <div class="col-lg-3 col-sm-6">
                                         <div class="container">
                                                 <div  class="product-card">
-                                                <a href="{{route('publish', ['id' =>$relatedProduct->id])}}">
-                                                <img src="/storage/cover_page/{{$relatedProduct->cover_page}}"> 
-                                                <h1 class="product-title">{{$relatedProduct->title}}</h1> 
+                                                <a href="{{route('publish.show', ['id' =>$relatedProduct->id])}}">
+                                                <img src="/storage/cover_page/{{$relatedProduct->cover_page}}" height="250" width="auto"> 
+                                                <h4 class="product-title">{{$relatedProduct->title}}</h4> 
                                                 </a>
                                                 <del></del>
                                                  <p class="price">{{$relatedProduct->price/100}}</p> 
-                                                 <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$relatedProduct->id}}">Add to Cart</button> 
+                                                 <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$relatedProduct->id}}" class="btn btn-outline-danger"> Add to Cart </button> 
                                                  <div class="modal fade" id="cart{{$relatedProduct->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> 
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
@@ -105,7 +120,7 @@
                                                                                 
                                                                                 <div class="row justify-content-center">
                                                                                     <div class="col-md-6">
-                                                                                        <button type="submit" class="btn-btn btn-block btn-outline-inf mt-md-3">Add to cart</button>
+                                                                                        <button type="submit" class="btn btn-block btn-outline-info mt-md-3">Add to cart</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </form>

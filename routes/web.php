@@ -92,4 +92,12 @@ Route::post('/send', 'EmailController@send');
  //user profile
  Route::get('profile', 'PublishController@profile')->middleware('auth')->name('profile');
  Route::get('editProfile/{id}','PublishController@editProfile')->middleware('auth')->name('editProfile');
- Route::put('updateProfile', 'Auth/RegisterController@update')->middleware('auth')->name('updateProfile');
+ Route::put('updateProfile', 'UserController@update')->middleware('auth')->name('updateProfile');
+
+ Route::get('orderDetails/{id}', 'PublishController@orderDetails')->middleware('auth')->name('orderDetails');
+    Route::get('customerInvoice/{id}', 'PublishController@customerInvoice')->middleware('auth')->name('customerInvoice');
+   // Route::get('getContactForm', 'PagesController@getContactForm')->name('getContactForm');
+    Route::post('postContact', 'PublishController@postContact')->name('postContact'); 
+    Route::post('postComplain','PublishController@postComplain')->middleware('auth')->name('postComplain');  
+    
+

@@ -11,10 +11,13 @@ use DB;
 use Auth;
 use Paystack;
 use App\Purchase;
+use App\Order;
+use App\User;
 
 use App\Mail\Mailtrap;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
+use App\Notifications\NewOrder;
 
 use Illuminate\Http\Request;
 
@@ -312,7 +315,7 @@ class PublishController extends Controller
            $order->state = $paymentDetails['data']['metadata']['state'];
            $order->address = $paymentDetails['data']['metadata']['address'];
            $order->full_name = $paymentDetails['data']['metadata']['first_name']. " " .$paymentDetails['data']['metadata']['last_name'];
-           $order->country = $paymentDetails['data']['metadata']['country'];
+        //    $order->country = $paymentDetails['data']['metadata']['country'];
            $order->city = $paymentDetails['data']['metadata']['city'];
            $order->quantity = $paymentDetails['data']['metadata']['quantity'];
            $order->phone = $paymentDetails['data']['metadata']['phone'];
@@ -356,9 +359,9 @@ class PublishController extends Controller
     public function editProfile($id){
         if(Auth::user()){
         $user = User::findOrFail($id);
-        $categories = Category::all();
-        $countries = Country::all();
-        return view('pages.edit_profile',compact(['user','categories',]));
+        // $categories = Category::all();
+        // $countries = Country::all();
+        return view('pages.edit_profile',compact(['user',]));
         }
 
     }
@@ -372,4 +375,76 @@ class PublishController extends Controller
         return view('pages.order_details', compact(['order', 'cart','categories', 'currency']));
         }
     }
+
+    public function postContact(Request $request){
+        $this->validate($request,[
+            'email' => 'required|email',
+            'subject' => 'min:3',
+            'phone' => 'required',
+            'body' => 'string',
+            'name' => 'required'
+        ]);
+
+        $data = [
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'phone' => $request->phone,
+            'bodyMessage' => $request->body,
+            'name' => $request->name
+        ];
+
+        Mail::send('email.contact', $data, function($message) use ($data){
+            $message->from($data['email']);
+            $message->to('solomoreal@yahoo.com');
+            $message->subject($data['subject']);
+        });
+
+        Notification::route('mail', $request->email)
+            ->notify(new MailSent());
+            return redirect(route('about'));
+    }
+    
+    public function postComplain(Request $request){
+        if(Auth::user()->role = 'Customer'){
+        $this->validate($request,[
+            'email' => 'required|email',
+            'subject' => 'min:3',
+            'phone' => 'required',
+            'body' => 'string',
+            'order_id' => 'nullable'
+
+        ]);
+
+        $data = [
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'phone' => $request->phone,
+            'bodyMessage' => $request->body,
+            'name' => $request->name,
+            'order_id' => $request->order_id
+        ];
+
+        Mail::send('email.complain', $data, function($message) use ($data){
+            $message->from($data['email']);
+            $message->to('solomoreal@yahoo.com');
+            $message->subject($data['subject']);
+        });
+
+        Notification::route('mail', $request->email)
+            ->notify(new MailSent());
+            return back()->with('success', 'Message Sent');
+    }
+    }
+
+    public function customerInvoice($id){
+        if(Auth::user()->role = 'Customer'){
+        $user = Auth::user();
+        $currency = '₦';
+        $order = Order::findOrfail($id);
+        $cart = unserialize(base64_decode($order->cart));
+        return view('pages.customer_invoice', compact(['user','currency','order','cart']));
+        }
+
+    }
+
 }

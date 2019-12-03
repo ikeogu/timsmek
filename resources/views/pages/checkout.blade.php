@@ -51,16 +51,16 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="">First name</label>
-          <input type="text" class="form-control" value="{{$user->first_name}}"placeholder="First name">
+          <input type="text" class="form-control" value="{{$user->first_name}}"placeholder="First name" name="first_name">
           </div>
           <div class="form-group col-md-6">
             <label for="">Last name</label>
-          <input type="text" class="form-control" value="{{$user->last_name}}"placeholder="last name">
+          <input type="text" class="form-control" value="{{$user->last_name}}"placeholder="last name" name="last_name">
           </div>
         </div>
         <div class="form-group">
           <label for="inputAddress">Email Address</label>
-        <input type="text" class="form-control" value="{{$user->email}}" placeholder="Johndoe@gmail.com">
+        <input type="text" class="form-control" value="{{$user->email}}" placeholder="Johndoe@gmail.com" name="email">
         </div>
         <div class="form-group">
           <label for="inputAddress2">Address </label>
@@ -115,7 +115,7 @@
           </div>
           <div class="form-group col-md-8">
             <label for="phone">Phone</label>
-          <input type="number" class="form-control" id="inputZip" value="{{$user->phone}}">
+          <input type="number" class="form-control" id="inputZip" value="{{$user->phone}}" name="phone">
           </div>
         </div>
         <div class="form-group">

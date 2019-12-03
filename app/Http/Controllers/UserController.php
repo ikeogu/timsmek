@@ -1,27 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller
-{
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
+class UserController extends Controller
 
+
+{
     use RegistersUsers;
 
     /**
@@ -29,7 +22,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -37,9 +30,9 @@ class RegisterController extends Controller
      * @return void
      */
     public function __construct()
-    {
-        $this->middleware('guest');
-    }
+     {
+       $this->middleware('auth');
+     }
 
     /**
      * Get a validator for an incoming registration request.
@@ -77,6 +70,19 @@ class RegisterController extends Controller
             'newslater' => $data['newslater']
         ]);
     }
-
-    
+    public function update(Request $request){
+        //dd($request->all());
+        $this->validate($request,[
+            'email' => 'required|email|string|',
+            'first_name' => 'nullable',
+            'last_name' => 'nullable',
+            'phone' => 'nullable',
+            'address' => 'nullable',
+            // 'country_id' => 'nullable',
+            'state' => 'nullable',
+            'zip' => 'nullable',
+        ]);
+        
+      return Auth::user()->update($request->except(['_method','_token'])) ? redirect(route('profile')) : back()->with('success','Profile Updated!');
+    }
 }

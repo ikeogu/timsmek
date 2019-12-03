@@ -95,6 +95,7 @@
 				<li  class="list"><a href="{{route('contact.create')}}"></i> Contact us</a></li>
 				<li class="list"><a href="{{route('getCart')}}"><i class="fa fa-shopping-cart"><sup class="badg">{{Session::has('cart') ? Session::get('cart')->totalQty : 0}}</sup></i></a></li>
 				@auth 
+				   <li class="list"><a href="{{route('profile')}}">My Profile</a></li>
 					@if(Auth::user()->isAdmin == 1)
 						<li class="list">	<a href="{{route('admindashboard')}}"> Admin DashBoard</a></li>
 					@elseif(Auth::user()->isAdmin == 2)

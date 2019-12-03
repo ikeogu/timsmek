@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('content')
     
 
@@ -33,6 +33,21 @@
                         <div class="profile-header">
                             <h2>Edit Profile</h2>
                         </div>
+                        <div class="form-card mt-5">
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div><br />
+                                @endif
+                                @if (\Session::has('success'))
+                                <div class="alert alert-success">
+                                    <p>{{ \Session::get('success') }}</p>
+                                </div><br />
+                              @endif
                         <div class="edit-profile container">
                             @if(Auth::user())
                         <form class="mt-5" action="{{route('updateProfile')}}" method="POST">
@@ -59,29 +74,23 @@
                                 <div class="form-group">
                                 <input type="text" value="{{$user->address}}" name="address" class="form-control" placeholder="Apartment, street, or floor">
                                 </div>
+                                <h5 class="mt-md-4">Zip code</h5>
+                                <div class="form-group">
+                                <input type="text" value="{{$user->zip}}" name="zip" class="form-control" placeholder="500006">
+                                </div>
 
                                 
 
-                                {{-- @if($countries)
-                                <div class="form-group">
-                                    <select id="country" data-route="{{route('fetchStates')}}" name="country_id" required class="form-control">
-                                    
-                                    <option selected value="{{ $user->country ? $user->country->id : " " }}" >{{$user->country ? $user->country->country_name : " Country"}}</option>
-                                    @foreach($countries as $country)
-                                    <option value="{{$country->id}}">{{$country->country_name}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                                @endif --}}
+                               
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                    <input type="text" name="state" value="{{$user->state}}" required class="form-control" >
+                                    <input type="text" name="state" value="{{$user->state}}" required class="form-control" placeholder="state">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="text" name="country" value="{{$user->country}}" required class="form-control" >
+                                        <input type="text" name="country" value="{{$user->country}}" required class="form-control" placeholder="country">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-outline-inf">Update</button>
+                                <button type="submit" class="btn btn-outline-danger"> Update </button>
                             </form>
                             @endif
                         </div>

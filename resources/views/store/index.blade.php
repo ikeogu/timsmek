@@ -99,7 +99,7 @@
                                                             <form action="{{route('addToCart')}}" method="POST">
                                                                 {{ csrf_field() }}
                                                                 <label>Quantity <label>
-                                                                <input type="number" name="qty"  class="form-control" required>
+                                                                <input type="number" name="qty"  min="1" class="form-control" required>
                                                         
                                                                 <input type="hidden" name="id" value="{{$item->id}}">
                                                                 <button type="submit" class="text-white buy btn btn-danger">
