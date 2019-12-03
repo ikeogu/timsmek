@@ -46,6 +46,12 @@ class HomeController extends Controller
 
     }
 
+    public function sec(){
+        return view('pages/carts');
+    }
+    public function thrd(){
+        return view('pages/checkout');
+    }
     // public function recent(){
     //     $recent = Publish::latest()->take(8)->get();;
     //     return view('partials/sidebar',['recent'=>$recent]);

@@ -24,6 +24,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', 'EditorController@index2');
+// Route::get('carts','HomeController@sec')->name('carts');
+// Route::get('checkout','HomeController@thrd')->name('checkout');
+
 //subdomain for
 Route::resource('article', 'ArticleController');
 Route::resource('authors','AuthorController');
@@ -72,5 +75,21 @@ Route::get('/read/{id}','PublishController@readBook')->name('prev');
 // for payment
 Route::post('/pay', 'Payment@redirectToGateway')->name('pay');
 Route::get('/payment/callback', 'Payment@handleGatewayCallback');
+//
+Route::post('/pay_hardcopy', 'PublishController@redirectToGateway')->name('payH');
+Route::get('/payment/callback', 'PublishController@handleGatewayCallback')->name('payR');
 // email
 Route::post('/send', 'EmailController@send');
+
+
+ //Cart
+ Route::post('addToCart', 'PublishController@addToCart')->name('addToCart');
+ Route::get('getCart', 'PublishController@getCart')->name('getCart');
+ Route::get('reduceByOne/{id}', 'PublishController@reduceItemByOne')->name('reduceByOne');
+ Route::get('removeItem/{id}', 'PublishController@removeItem')->name('removeItem');
+ Route::get('emptyCart', 'PublishController@emptyCart')->name('emptyCart');
+ Route::get('checkout', 'PublishController@checkout')->middleware('auth')->name('checkout');
+ //user profile
+ Route::get('profile', 'PublishController@profile')->middleware('auth')->name('profile');
+ Route::get('editProfile/{id}','PublishController@editProfile')->middleware('auth')->name('editProfile');
+ Route::put('updateProfile', 'Auth/RegisterController@update')->middleware('auth')->name('updateProfile');

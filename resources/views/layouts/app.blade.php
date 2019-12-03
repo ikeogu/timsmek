@@ -12,20 +12,20 @@
         
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="{{asset('manifest.json')}}">
+    {{-- <link rel="manifest" href="{{asset('manifest.json')}}"> --}}
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
     <link rel="stylesheet"  href="{{asset('css/slick.css')}}" />
     <link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-  	<link href="{{asset('css/fontawesome.min.css')}}" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <meta name="theme-color" content="#fafafa">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
     
-	<script>
+	{{-- <script>
 		if ('serviceWorker' in navigator && 'PushManager' in window ) {
 		  window.addEventListener('load', function() {
 			  navigator.serviceWorker.register('../service-worker.js').then(function(registration) {
@@ -38,7 +38,7 @@
 		  });
 	  }
   
-  </script>
+  </script> --}}
 <head>
   
   
@@ -93,6 +93,7 @@
 					<li class="list"><a href="{{route('blog.index')}}">Blog</a></li>
 					<li class="list"><a href="{{route('article.create')}}">Submit an Article</a></li>
 				<li  class="list"><a href="{{route('contact.create')}}"></i> Contact us</a></li>
+				<li class="list"><a href="{{route('getCart')}}"><i class="fa fa-shopping-cart"><sup class="badg"></sup></i></a></li>
 				@auth 
 					@if(Auth::user()->isAdmin == 1)
 						<li class="list">	<a href="{{route('admindashboard')}}"> Admin DashBoard</a></li>

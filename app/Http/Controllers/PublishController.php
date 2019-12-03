@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Publish;
 use App\Category;
 use App\Author;
+use App\Cart;
+use Session;
+use DB;
+use Auth;
+
 use Illuminate\Http\Request;
 
 class PublishController extends Controller
@@ -187,10 +192,176 @@ class PublishController extends Controller
         $book = Publish::find($id);
         return view('store/index',['book'=> $book]);
     }
-
-    // public function recentPu(){
+    public function addToCart(Request $request){
+        //dd($request->all());
         
-    //     return
-    // }
+        $book_id = $request->id;
+        if($request->id){
+            $cart_id = $request->id;
+        }else{
+            $cart_id = $book_id;
+        }
+        
+        $product = Publish::findOrFail($book_id);
+        
+        $qty = $request->qty ? $request->qty : 1;
+        $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+        
+        $cart->add($product, $cart_id,  $qty);
 
+        $request->session()->put('cart', $cart);
+        return back()->with('success', 'Book added to Cart');
+    }
+    public function getCart(Request $request){
+        //dd(request()->session()->get('cart'));
+        $currency = '₦';
+        
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        
+        $products = $cart->items;
+        //dd($products);
+        // foreach($products as $pro){
+        //     dd($pro['item']['title']);
+        // }
+            
+
+        $totalPrice = $cart->totalPrice;
+        $totalQty = $cart->totalQty;
+        $relatedProducts = Publish::all()->take(4);
+        return  view('pages.carts', compact(['products','totalPrice','totalQty','relatedProducts','currency']));
+    }
+
+    public function reduceItemByOne($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->reduceByOne($id);
+        Session::put('cart', $cart);
+        return back();
+        
+    }
+
+    public function removeItem($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+        Session::put('cart', $cart);
+        return back()->with('Danger', 'Book removed from Cart');
+    }
+
+    public function emptyCart(){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        Session::forget('cart');
+        $cart = null;
+
+      return redirect(route('publish.index'));
+   }
+
+   public function checkout(){
+    if(Auth::user()){
+       $user = Auth::user();
+       $currency = '₦';
+    //    $countries = Country::all();
+    // $categories = Category::all();
+    $oldCart = Session::has('cart') ? Session::get('cart') : null;
+    $cart = new Cart($oldCart);
+    $products = $cart->items;
+    $totalPrice = $cart->totalPrice;
+    $totalPriceCheckout = $cart->totalPrice*100;
+    $totalQty = $cart->totalQty;
+    return  view('pages.checkout', compact(['products','totalPrice','totalQty','totalPriceCheckout','user','currency']));
+    }
+   }
+   
+   public function redirectToGateway()
+   {
+       if(Auth::user()){
+       request()->metadata = json_encode(request()->all());
+       return Paystack::getAuthorizationUrl()->redirectNow();
+       }
+   }
+   
+
+   /**
+    * Obtain Paystack payment information
+    * @return void
+    */
+   public function handleGatewayCallback()
+   {
+       if(Auth::user()){
+       $paymentDetails = Paystack::getPaymentData();
+
+      //dd($paymentDetails);
+       $paymentDetails = Paystack::getPaymentData();
+       $cart = Session::get('cart');
+      // $cart = new Cart($oldCart);
+       if($paymentDetails){
+           $order = new Order();
+           $order->order_id = $paymentDetails['data']['reference'];
+           $order->amount = $paymentDetails['data']['amount'];
+           $order->state = $paymentDetails['data']['metadata']['state'];
+           $order->address = $paymentDetails['data']['metadata']['address'];
+           $order->full_name = $paymentDetails['data']['metadata']['first_name']. " " .$paymentDetails['data']['metadata']['last_name'];
+           $order->country = $paymentDetails['data']['metadata']['country'];
+           $order->city = $paymentDetails['data']['metadata']['city'];
+           $order->quantity = $paymentDetails['data']['metadata']['quantity'];
+           $order->phone = $paymentDetails['data']['metadata']['phone'];
+           $order->email = $paymentDetails['data']['metadata']['email'];
+           $order->paid_at = $paymentDetails['data']['paidAt'];
+           $order->currency = $paymentDetails['data']['currency'];
+           $order->cart =  base64_encode(serialize($cart));
+           $order->status = "Pending";
+           if(Auth::user()){
+               $order->user_id = Auth::user()->id;
+           }
+           $order->save();
+           $user = User::findOrFail($order->user_id);
+           $user->notify(new NewOrder($order->order_id));
+
+       }
+       $this->emptyCart();
+       return redirect(route('profile'));
+   }
+
+ }
+    
+
+ public function profile(){
+    if(Auth::user()){
+    //  $countries = Country::all(); 
+        //dd($user->orders);
+        $orders = Auth::user()->orders;
+        $orders->transform(function($order, $key){
+            $order->cart = unserialize(base64_decode($order->cart));
+
+            return $order;
+        });
+        $currency = '₦';
+        //$categories = Category::all();
+        $relatedProducts = Publish::latest()->take(8)->get();
+     return view('pages.profile',compact(['categories','orders','relatedProducts','currency']));
+    }
+ }
+
+    public function editProfile($id){
+        if(Auth::user()){
+        $user = User::findOrFail($id);
+        $categories = Category::all();
+        $countries = Country::all();
+        return view('pages.edit_profile',compact(['user','categories',]));
+        }
+
+    }
+
+    public function orderDetails($id){
+        if(Auth::user()){
+        $currency = '₦';
+        $order = Order::findOrfail($id);
+        $cart = unserialize(base64_decode($order->cart));
+        $categories = Category::all();
+        return view('pages.order_details', compact(['order', 'cart','categories', 'currency']));
+        }
+    }
 }

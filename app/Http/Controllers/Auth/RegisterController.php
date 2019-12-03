@@ -76,4 +76,20 @@ class RegisterController extends Controller
             'newslater' => $data['newslater']
         ]);
     }
+
+    public function update(Request $request){
+        //dd($request->all());
+        $this->validate($request,[
+            'email' => 'required|string|email',
+            'first_name' => 'nullable',
+            'last_name' => 'nullable',
+            'phone' => 'nullable',
+            'address' => 'nullable',
+            // 'country_id' => 'nullable',
+            'state' => 'nullable',
+            'zip' => 'nullable',
+        ]);
+        
+      return Auth::user()->update($request->all()) ? redirect(route('profile')) : back();
+    }
 }
