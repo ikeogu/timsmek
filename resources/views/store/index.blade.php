@@ -86,15 +86,15 @@
                                                     @elseif($item->available == 3)
                                                         <p class="f-w-600 m-b-10">available both Hard and soft copy</p> 
                                                     @endif 
-                                                    <p class="price"> {{date('d/M/Y h:i:s',strtotime($item->year_pub))}}</p>
+                                                    <p class="price"> {{date('d/M/Y ',strtotime($item->year_pub))}}</p>
                                                     @if($item->status === 1 && $item->available == 1)
-                                                        <p class="price">₦{{$item->price}}</p>
+                                                        <p class="price">₦{{$item->price / 100}}</p>
                                                         
                                                         <button type="button" class=" buy btn btn-default" data-toggle="modal" data-target="#exampleModalCenter">
                                                                 Buy <i class="fa fa-shopping-cart"></i>
                                                         </button>
                                                         @elseif($item->status === 1 && $item->available == 2)
-                                                            <p class="price">₦{{$item->price}}</p>
+                                                            <p class="price">₦{{$item->price / 100}}</p>
 
                                                             <form action="{{route('addToCart')}}" method="POST">
                                                                 {{ csrf_field() }}

@@ -9,6 +9,12 @@ use App\Cart;
 use Session;
 use DB;
 use Auth;
+use Paystack;
+use App\Purchase;
+
+use App\Mail\Mailtrap;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 use Illuminate\Http\Request;
 
@@ -98,7 +104,7 @@ class PublishController extends Controller
         
         $book = new Publish();
         $book->title = $request->title;
-        $book->price = $request->price;
+        $book->price = ($request->price * 100);
         $book->available = $request->available;
         $book->year_pub = $request->year_pub;
         $book->isbn = $request->isbn;
@@ -228,7 +234,9 @@ class PublishController extends Controller
             
 
         $totalPrice = $cart->totalPrice;
+        
         $totalQty = $cart->totalQty;
+        //dd($totalPrice,$totalQty);
         $relatedProducts = Publish::all()->take(4);
         return  view('pages.carts', compact(['products','totalPrice','totalQty','relatedProducts','currency']));
     }

@@ -63,21 +63,18 @@
         <input type="text" class="form-control" value="{{$user->email}}" placeholder="Johndoe@gmail.com">
         </div>
         <div class="form-group">
-          <label for="inputAddress2">Address 1</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          <label for="inputAddress2">Address </label>
+          <input type="text" class="form-control" name="address" placeholder=" Room 12 Apartment, street, or floor">
         </div>
-        <div class="form-group">
-            <label for="inputAddress2">Address 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-          </div>
+        
         <div class="form-row">
-          <div class="form-group col-md-4">
+          {{-- <div class="form-group col-md-4">
             <label for="inputCity">Country</label>
             <input type="text" class="form-control" id="Country" placeholder=" enter country">
-          </div>
+          </div> --}}
           <div class="form-group col-md-4">
             <label for="inputState">State/Province</label>
-            <select id="inputState" class="form-control">
+            <select id="inputState" class="form-control" name="state">
               <option >Choose...</option>
               <option>Abia</option>
               <option>Adamawa</option>
@@ -108,17 +105,17 @@
           </div>
           <div class="form-group col-md-4">
             <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity" placeholder=" enter city">
+            <input type="text" class="form-control" id="inputCity" placeholder=" enter city" name="city">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
+            <input type="text" class="form-control" id="inputZip" name="zip">
           </div>
           <div class="form-group col-md-8">
             <label for="phone">Phone</label>
-            <input type="number" class="form-control" id="inputZip" placeholder="+(234)">
+          <input type="number" class="form-control" id="inputZip" value="{{$user->phone}}">
           </div>
         </div>
         <div class="form-group">

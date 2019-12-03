@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-2">
               <h5 class="item-title mb-4">Quantity</h5>
-            <input type="number" name="qty" class="form-control" value="{{$product['qty']}}">
+            <input type="number" name="qty" class="form-control" value="{{$product['qty']}}" readonly>
             {{-- <div class="col-md-3">
               <h5 class="item-title">Unit Price</h5>
               <div class="price-container mt-5">
@@ -33,7 +33,7 @@
             <div class="col-md-3">
               <h5 class="item-title">Unit Price</h5>
               <div class="price-container mt-5">
-              <h4 class="item-prices text-success">{{$currency.''.number_format($product['price'],2)}}</h4>
+              <h4 class="item-prices text-success">{{$currency.''.number_format($product['item']['price']/100,2)}}</h4>
               </div>
               @endforeach
 
